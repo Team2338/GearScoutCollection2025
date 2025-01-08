@@ -1,5 +1,5 @@
 import './LoginPage.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IUser } from '../../model/Models.ts';
 import Button from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -15,6 +15,14 @@ export default function LoginPage(props: IProps) {
 	const [eventCode, setEventCode] = useState<string>('');
 	const [secretCode, setSecretCode] = useState<string>('');
 
+	// Initialize inputs with last saved values
+	useEffect(() => {
+		setTeamNumber(localStorage.getItem('teamNumber') ?? '');
+		setScouterName(localStorage.getItem('scouterName') ?? '');
+		setEventCode(localStorage.getItem('eventCode') ?? '');
+		setSecretCode(localStorage.getItem('secretCode') ?? '');
+	}, []);
+
 	const isValid: boolean = Boolean(
 		teamNumber.trim()
 		&& scouterName.trim()
@@ -27,6 +35,12 @@ export default function LoginPage(props: IProps) {
 		if (!isValid) {
 			return;
 		}
+
+		// Save login info for next session
+		localStorage.setItem('teamNumber', teamNumber);
+		localStorage.setItem('scouterName', scouterName);
+		localStorage.setItem('eventCode', eventCode);
+		localStorage.setItem('secretCode', secretCode);
 
 		props.handleLogin({
 			teamNumber: Number(teamNumber),
@@ -119,6 +133,7 @@ export default function LoginPage(props: IProps) {
 					color="primary"
 					variant="contained"
 					onClick={ handleSubmit }
+					disabled={ !isValid }
 				>
 					Submit
 				</Button>
