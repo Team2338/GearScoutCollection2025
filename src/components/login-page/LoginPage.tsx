@@ -1,33 +1,127 @@
 import './LoginPage.scss';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 import { IUser } from '../../model/Models.ts';
+import Button from '@mui/material/Button';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
 
 interface IProps {
 	handleLogin: (user: IUser) => void;
 }
 
-export const LoginPage = (props: IProps) => {
-	const [username, setUsername] = useState<string>('');
+export default function LoginPage(props: IProps) {
+	const [teamNumber, setTeamNumber] = useState<string>('');
+	const [scouterName, setScouterName] = useState<string>('');
+	const [eventCode, setEventCode] = useState<string>('');
+	const [secretCode, setSecretCode] = useState<string>('');
 
-	const handleSubmit = (event) => {
+	const isValid: boolean = Boolean(
+		teamNumber.trim()
+		&& scouterName.trim()
+		&& eventCode.trim()
+		&& secretCode.trim()
+	);
+
+	const handleSubmit = (event): void => {
 		event.preventDefault();
-		props.handleLogin(null);
+		if (!isValid) {
+			return;
+		}
+
+		props.handleLogin({
+			teamNumber: Number(teamNumber),
+			scouterName: scouterName,
+			eventCode: eventCode,
+			secretCode: secretCode
+		});
 	};
 
 	return (
 		<main className="page login-page">
-			<h1>Login page</h1>
-			<form onSubmit={ handleSubmit }>
+			<form
+				className="login-form"
+				onSubmit={ handleSubmit }
+				aria-labelledby="login-form-header"
+			>
+				<h1 id="login-form-header">Sign in</h1>
 				<TextField
-					value={ username }
-					onChange={ (e) => setUsername(e.target.value) }
-					label="Username"
-					placeholder="Username"
-					name="username"
+					id="team-number-input"
+					label="Team number"
+					name="teamNumber"
+					type="number"
+					margin="dense"
+					variant="outlined"
+					value={ teamNumber }
+					onChange={ (e) => setTeamNumber(e.target.value) }
+					slotProps={{
+						input: {
+							startAdornment: <InputAdornment position="start">#</InputAdornment>
+						},
+						htmlInput: {
+							min: 0,
+							max: 9999
+						}
+					}}
+					autoComplete="off"
+					autoFocus={ true }
 				/>
-				<Button>Log in</Button>
+				<TextField
+					id="scouter-name-input"
+					label="Scouter name"
+					name="scouterName"
+					type="text"
+					margin="dense"
+					variant="outlined"
+					autoComplete="off"
+					value={ scouterName }
+					onChange={ (e) => setScouterName(e.target.value) }
+					slotProps={{
+						htmlInput: {
+							maxLength: 32
+						}
+					}}
+				/>
+				<TextField
+					id="event-code-input"
+					label="Event code"
+					name="eventCode"
+					type="text"
+					margin="dense"
+					variant="outlined"
+					autoComplete="off"
+					value={ eventCode }
+					onChange={ (e) => setEventCode(e.target.value) }
+					slotProps={{
+						htmlInput: {
+							maxLength: 32
+						}
+					}}
+				/>
+				<TextField
+					id="secret-code-input"
+					label="Secret code"
+					name="secretCode"
+					type="text"
+					margin="dense"
+					variant="outlined"
+					autoComplete="off"
+					value={ secretCode }
+					onChange={ (e) => setSecretCode(e.target.value) }
+					slotProps={{
+						htmlInput: {
+							maxLength: 32
+						}
+					}}
+				/>
+				<Button
+					id="login-submit-button"
+					type="submit"
+					color="primary"
+					variant="contained"
+					onClick={ handleSubmit }
+				>
+					Submit
+				</Button>
 			</form>
 		</main>
 	);

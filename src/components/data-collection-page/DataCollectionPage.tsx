@@ -5,8 +5,8 @@ interface IProps {
 	user: IUser;
 }
 
-export const DataCollectionPage = (props: IProps) => {
+export default function DataCollectionPage(props: IProps) {
 	return (
-		<div>Data collection page</div>
+		<main className="page data-page">Data collection page</main>
 	);
 };

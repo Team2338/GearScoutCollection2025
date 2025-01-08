@@ -1,6 +1,6 @@
 
 export interface IUser {
-	username: string;
+	scouterName: string;
 	teamNumber: number;
 	eventCode: string;
 	secretCode: string;
