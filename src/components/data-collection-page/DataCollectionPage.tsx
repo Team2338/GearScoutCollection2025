@@ -145,29 +145,33 @@ export default function DataCollectionPage(props: IProps) {
 				onSubmit={ handleSubmit }
 				aria-labelledby='data-collection-form-header'
 			>
-				<TextField
-					id='scout-team-number'
-					label='Scouted Team Number'
-					name='scoutTeamNumber'
-					type='number'
-					margin='dense'
-					variant='outlined'
-					value={ scoutTeamNumber }
-					onChange={ (event) => setScoutTeamNumber(event.target.value) }
-					slotProps={{
-						input: {
-							startAdornment: <InputAdornment position='start'>#</InputAdornment>
-						},
-						htmlInput:
-						{
-							min: 0,
-							max: 99999
-						}
-					}}
-					autoComplete="off"
-					autoFocus={true}
-				/>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center' }}>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<TextField
+						id='scout-team-number'
+						label='Team Number'
+						name='scoutTeamNumber'
+						type='number'
+						margin='dense'
+						variant='outlined'
+						value={ scoutTeamNumber }
+						onChange={ (event) => setScoutTeamNumber(event.target.value) }
+						slotProps={{
+							htmlInput:
+							{
+								min: 0,
+								max: 99999,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
+							}
+						}}
+						autoComplete="off"
+						style={{ width: '150px', accentColor: 'orange', height: '60px' }}
+						autoFocus={true}
+						InputProps={{
+							disableUnderline: true
+						}}
+					/>
+				</div>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 					<TextField
 						id='match-number'
 						label='Match Number'
@@ -178,84 +182,105 @@ export default function DataCollectionPage(props: IProps) {
 						value={ matchNumber }
 						onChange={ (event) => setMatchNumber(event.target.value) }
 						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
 							htmlInput:
 							{
 								min: 0,
-								max: 999
+								max: 999,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
+						style={{ width: '150px', height: '75px'}}
 					/>
 				</div>
-				<ToggleButtonGroup
-					id='alliance-color'
-					value={ allianceColor }
-					exclusive
-					onChange={ (event, newValue) => setAllianceColor(newValue) }
-					aria-label='alliance color'
-					style={{ gap: '10px' }}
-				>
-					<ToggleButton 
-						value='Blue' 
-						aria-label='blue alliance' 
-						selected={allianceColor === 'Blue'}
-						style={{ backgroundColor: allianceColor === 'Blue' ? '#ccccff' : 'blue', color: 'black' }}
-						onClick={() => setAllianceColor(AllianceColor.blue)}
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<ToggleButtonGroup
+						id='alliance-color'
+						value={ allianceColor }
+						exclusive
+						onChange={ (event, newValue) => setAllianceColor(newValue) }
+						aria-label='alliance color'
+						style={{ gap: '10px' }}
 					>
-						Blue
-					</ToggleButton>
-					<ToggleButton 
-						value='Red' 
-						aria-label='red alliance' 
-						selected={allianceColor === 'Red'}
-						style={{ backgroundColor: allianceColor === 'Red' ? '#ffcccc' : 'red', color: 'black' }}
-						onClick={() => setAllianceColor(AllianceColor.red)}
+						<ToggleButton 
+							value='Red' 
+							aria-label='red alliance' 
+							selected={allianceColor === 'Red'}
+							style={{ backgroundColor: allianceColor === 'Red' ? '#ff0000' : 'transparent', 
+								color: allianceColor === AllianceColor.red ? 'white' : 'orange', 
+								width: '135px',
+								height: '35px',
+								borderRadius: '5px',
+								marginBottom: '10px'
+							}}
+							onClick={() => setAllianceColor(AllianceColor.red)}
+						>
+							Red Alliance
+						</ToggleButton>
+						<ToggleButton 
+							value='Blue' 
+							aria-label='blue alliance' 
+							selected={allianceColor === 'Blue'}
+							style={{ backgroundColor: allianceColor === 'Blue' ? '#0000ff' : 'transparent', 
+								color: allianceColor === AllianceColor.blue ? 'white' : 'orange',
+								width: '135px',
+								height: '35px',
+								borderRadius: '5px',
+								marginBottom: '15px'
+							 }}
+							onClick={() => setAllianceColor(AllianceColor.blue)}
+						>
+							Blue Alliance
+						</ToggleButton>
+					</ToggleButtonGroup>
+				</div>
+				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Auto</h1>
+				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Move</h2>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<ToggleButtonGroup
+						id='move'
+						value={ move }
+						exclusive
+						onChange={ (event, newValue) => setMove(newValue) }
+						aria-label='move'
+						style={{ gap: '10px' }}
+						defaultValue={Move.no}
 					>
-						Red
-					</ToggleButton>
-				</ToggleButtonGroup>
-				<h1>Auto</h1>
-				<h2>Move</h2>
-				<ToggleButtonGroup
-					id='move'
-					value={ move }
-					exclusive
-					onChange={ (event, newValue) => setMove(newValue) }
-					aria-label='move'
-					style={{ gap: '10px' }}
-				>
-					<ToggleButton 
-						value='Yes' 
-						aria-label='yes move' 
-						selected={move === 'Yes'}
-						style={{ 
-							backgroundColor: move === 'Yes' ? '#ffcc99' : 'orange', 
-							color: 'black',
-							flex: 1
-						}}
-						onClick={() => setMove(Move.yes)}
-					>
-						Yes
-					</ToggleButton>
-					<ToggleButton 
-						value='No' 
-						aria-label='no move' 
-						selected={move === 'No'}
-						style={{ 
-							backgroundColor: move === 'No' ? '#ffcc99' : 'orange', 
-							color: 'black',
-							flex: 1
-						}}
-						onClick={() => setMove(Move.no)}
-					>
-						No
-					</ToggleButton>
-				</ToggleButtonGroup>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center' }}>
-					<button type="button" onClick={() => setCoralL4(coralL4 - 1)}>&#9664;</button>
+						<ToggleButton 
+							value='No' 
+							aria-label='no move' 
+							selected={move === 'No'}
+							style={{ 
+								backgroundColor: move ===  'No' ? '#fe5000' : 'transparent', 
+								color: move === 'No' ? 'white' : 'orange',
+								width: '75px',
+								height: '35px',
+								borderRadius: '5px',
+								marginBottom: '15px'
+							}}
+							onClick={() => setMove(Move.no)}
+						>
+							No
+						</ToggleButton>
+						<ToggleButton 
+							value='Yes' 
+							aria-label='yes move' 
+							selected={move === 'Yes'}
+							style={{ 
+								backgroundColor: move ===  'Yes' ? '#fe5000' : 'transparent', 
+								color: move === 'Yes' ? 'white' : 'orange',
+								width: '75px',
+								height: '35px',
+								borderRadius: '5px'
+							}}
+							onClick={() => setMove(Move.yes)}
+						>
+							Yes
+						</ToggleButton>
+					</ToggleButtonGroup>
+				</div>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l4'
 						label='Coral Level 4'
@@ -272,7 +297,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -280,11 +306,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL4(coralL4 + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setCoralL3(coralL3 - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l3'
 						label='Coral Level 3'
@@ -301,20 +329,22 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
-							
 						}}
 						autoComplete="off"
 						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
+							inputProps: { style: { textAlign: 'center', appearance: 'none' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL3(coralL3 + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setCoralL2(coralL2 - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l2'
 						label='Coral Level 2'
@@ -331,7 +361,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -339,11 +370,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL2(coralL2 + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setCoralL1(coralL1 - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l1'
 						label='Coral Level 1'
@@ -360,7 +393,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -368,11 +402,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL1(coralL1 + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setAlgeRem(algeRem - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='alge-rem'
 						label='Alge Rem'
@@ -389,7 +425,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -397,11 +434,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setAlgeRem(algeRem + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setProcess(process - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='process'
 						label='Process'
@@ -418,7 +457,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -426,11 +466,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setProcess(process + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setNet(net - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='net'
 						label='Net'
@@ -447,7 +489,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -455,12 +498,14 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setNet(net + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<h1>Teleop</h1>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center' }}>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop - 1)}>&#9664;</button>
+				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Teleop</h1>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l4-teleop'
 						label='Coral Level 4'
@@ -477,7 +522,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -485,11 +531,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l3-teleop'
 						label='Coral Level 3'
@@ -506,7 +554,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -514,11 +563,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l2-teleop'
 						label='Coral Level 2'
@@ -535,7 +586,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -543,11 +595,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='coral-l1-teleop'
 						label='Coral Level 1'
@@ -564,7 +618,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -572,11 +627,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='alge-rem-teleop'
 						label='Alge Rem'
@@ -593,7 +650,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -601,11 +659,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='process-teleop'
 						label='Process'
@@ -622,7 +682,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -630,11 +691,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-					<button type="button" onClick={() => setNetTeleop(netTeleop - 1)}>&#9664;</button>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button type="button" onClick={() => setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
 					<TextField
 						id='net-teleop'
 						label='Net'
@@ -651,7 +714,8 @@ export default function DataCollectionPage(props: IProps) {
 							htmlInput:
 							{
 								min: 0,
-								max: 99
+								max: 99,
+								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
 						}}
 						autoComplete="off"
@@ -659,11 +723,13 @@ export default function DataCollectionPage(props: IProps) {
 							inputProps: { style: { textAlign: 'center' } },
 							endAdornment: null
 						}}
+						style={{ padding: '0 10px',
+							marginBottom: '15px' }}
 					/>
-					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)}>&#9654;</button>
+					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
-				<h2>Climb</h2>
-				<div style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}>Climb</h2>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 					<ToggleButtonGroup
 						id='climb'
 						value={ climb }
@@ -676,7 +742,11 @@ export default function DataCollectionPage(props: IProps) {
 							value='None'
 							aria-label='no climb'
 							selected={climb === 'None'}
-							style={{ backgroundColor: climb === 'None' ? '#ffcc99' : 'orange', color: 'black' }}
+							style={{ backgroundColor: climb ===  'None' ? '#fe5000' : 'transparent', color: climb === 'None' ? 'white' : 'orange', 								
+								width: '75px',
+								height: '35px',
+								borderRadius: '5px',
+								marginBottom: '15px' }}
 							onClick={() => setClimb(Climb.none)}
 						>
 							None
@@ -685,7 +755,10 @@ export default function DataCollectionPage(props: IProps) {
 							value='Park'
 							aria-label='park climb'
 							selected={climb === 'Park'}
-							style={{ backgroundColor: climb === 'Park' ? '#ffcc99' : 'orange', color: 'black' }}
+							style={{ backgroundColor: climb ===  'Park' ? '#fe5000' : 'transparent', color: climb === 'Park' ? 'white' : 'orange', 								
+								width: '75px',
+								height: '35px',
+								borderRadius: '5px' }}
 							onClick={() => setClimb(Climb.park)}
 						>
 							Park
@@ -694,7 +767,10 @@ export default function DataCollectionPage(props: IProps) {
 							value='Shallow'
 							aria-label='shallow climb'
 							selected={climb === 'Shallow'}
-							style={{ backgroundColor: climb === 'Shallow' ? '#ffcc99' : 'orange', color: 'black' }}
+							style={{ backgroundColor: climb ===  'Shallow' ? '#fe5000' : 'transparent', color: climb === 'Shallow' ? 'white' : 'orange', 								
+								width: '75px',
+								height: '35px',
+								borderRadius: '5px' }}
 							onClick={() => setClimb(Climb.shallow)}
 						>
 							Shallow
@@ -703,12 +779,53 @@ export default function DataCollectionPage(props: IProps) {
 							value='Deep'
 							aria-label='deep climb'
 							selected={climb === 'Deep'}
-							style={{ backgroundColor: climb === 'Deep' ? '#ffcc99' : 'orange', color: 'black' }}
+							style={{ backgroundColor: climb === 'Deep' ? '#fe5000' : 'transparent', color: climb === 'Deep' ? 'white' : 'orange', 								
+								width: '75px',
+								height: '35px',
+								borderRadius: '5px' }}
 							onClick={() => setClimb(Climb.deep)}
 						>
 							Deep
 						</ToggleButton>
 					</ToggleButtonGroup>
+				</div>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+					<button
+						type='button'
+						className='back-button'
+						onClick={() => window.location.href = '/'}
+						style={{ 
+							backgroundColor: 'transparent', 
+							color: '#fe5000', 
+							fontSize: '1em', 
+							width: '75px',
+							height: '35px',
+							borderRadius: '5px',
+							border: '#fe5000 1px solid',
+							marginRight: '10px',
+							marginTop: '40px',
+							cursor: 'pointer'
+						}}
+					>
+						Back
+					</button>
+					<button
+						type='submit'
+						className='submit-button'
+						disabled={ !isValid }
+						style={{ 
+							backgroundColor: '#fe5000', 
+							color: 'white', 
+							fontSize: '1em', 
+							width: '75px',
+							height: '35px',
+							borderRadius: '5px',
+							border: 'none',
+							marginTop: '40px'
+						}}
+					>
+						Submit
+					</button>
 				</div>
 			</form>
 		</main>
