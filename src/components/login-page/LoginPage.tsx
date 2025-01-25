@@ -73,8 +73,12 @@ export default function LoginPage(props: IProps) {
 						},
 						htmlInput: {
 							min: 0,
-							max: 9999
+							max: 9999,
+							style: { color: ' #FAF9F6' }
 						}
+					}}
+					InputLabelProps={{
+						style: { color: ' #FAF9F6' }
 					}}
 					autoComplete="off"
 					autoFocus={ true }
@@ -91,8 +95,12 @@ export default function LoginPage(props: IProps) {
 					onChange={ (e) => setScouterName(e.target.value) }
 					slotProps={{
 						htmlInput: {
-							maxLength: 32
+							maxLength: 32,
+							style: { color: ' #FAF9F6' }
 						}
+					}}
+					InputLabelProps={{
+						style: { color: ' #FAF9F6' }
 					}}
 				/>
 				<TextField
@@ -107,8 +115,12 @@ export default function LoginPage(props: IProps) {
 					onChange={ (e) => setEventCode(e.target.value) }
 					slotProps={{
 						htmlInput: {
-							maxLength: 32
+							maxLength: 32,
+							style: { color: ' #FAF9F6' }
 						}
+					}}
+					InputLabelProps={{
+						style: { color: ' #FAF9F6' }
 					}}
 				/>
 				<TextField
@@ -123,8 +135,12 @@ export default function LoginPage(props: IProps) {
 					onChange={ (e) => setSecretCode(e.target.value) }
 					slotProps={{
 						htmlInput: {
-							maxLength: 32
+							maxLength: 32,
+							style: { color: ' #FAF9F6' }
 						}
+					}}
+					InputLabelProps={{
+						style: { color: ' #FAF9F6' }
 					}}
 				/>
 				<Button

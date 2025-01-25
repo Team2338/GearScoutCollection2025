@@ -169,6 +169,9 @@ export default function DataCollectionPage(props: IProps) {
 						InputProps={{
 							disableUnderline: true
 						}}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -191,6 +194,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						autoComplete="off"
 						style={{ width: '150px', height: '75px'}}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -308,6 +314,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -340,6 +349,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -372,6 +384,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -404,6 +419,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -436,6 +454,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -468,6 +489,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -500,6 +524,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -533,6 +560,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -565,6 +595,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -597,6 +630,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -629,6 +665,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -661,6 +700,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -693,6 +735,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -725,6 +770,9 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 						style={{ padding: '0 10px',
 							marginBottom: '15px' }}
+						InputLabelProps={{
+							style: { color: ' #FAF9F6' }
+						}}
 					/>
 					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
 				</div>
@@ -812,6 +860,7 @@ export default function DataCollectionPage(props: IProps) {
 					<button
 						type='submit'
 						className='submit-button'
+						onClick={ handleSubmit }
 						disabled={ !isValid }
 						style={{ 
 							backgroundColor: '#fe5000', 
