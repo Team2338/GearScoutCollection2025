@@ -1,7 +1,7 @@
 import './DataCollectionPage.scss';
 import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop } from '../../model/Models.ts';
 import { useEffect, useState } from 'react';
-import { InputAdornment, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { InputAdornment, TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 
 interface IProps {
 	user: IUser;
@@ -31,7 +31,7 @@ export default function DataCollectionPage(props: IProps) {
 	const [algeRemTeleop, setAlgeRemTeleop] = useState<number>(0);
 	const [processTeleop, setProcessTeleop] = useState<number>(0);
 	const [netTeleop, setNetTeleop] = useState<number>(0);
-	const [climb, setClimb] = useState<Climb>(Climb.none);
+	const [climb, setClimb] = useState<Climb>(Climb.unknown);
 
 	useEffect(() => {
 		setScoutTeamNumber(localStorage.getItem('scoutTeamNumber') ?? '');
@@ -78,7 +78,7 @@ export default function DataCollectionPage(props: IProps) {
 		&& algeRemTeleop >= 0
 		&& processTeleop >= 0
 		&& netTeleop >= 0
-		&& climb !== Climb.none
+		&& climb !== Climb.unknown
 	);
 
 	const handleSubmit = (event): void => {
@@ -145,7 +145,15 @@ export default function DataCollectionPage(props: IProps) {
 				onSubmit={ handleSubmit }
 				aria-labelledby='data-collection-form-header'
 			>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#00243e', margin: '10px' }}>
+					<div className="logo">
+						<img src="logos/192-pwa.png" alt="2338 logo" height="100rem"/>
+					</div>
+					<div className="analytics">
+						<Button sx={{ m: 0.5 }} variant="contained" href="https://data.gearitforward.com/">Analytics</Button>
+					</div>
+				</div>
+				<div className="coral-level-container173" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 					<TextField
 						id='scout-team-number'
 						label='Team Number'
@@ -164,7 +172,7 @@ export default function DataCollectionPage(props: IProps) {
 							}
 						}}
 						autoComplete="off"
-						style={{ width: '150px', accentColor: 'orange', height: '60px' }}
+						style={{ width: '125px', accentColor: 'orange', height: '60px' }}
 						autoFocus={true}
 						InputProps={{
 							disableUnderline: true
@@ -193,7 +201,7 @@ export default function DataCollectionPage(props: IProps) {
 							}
 						}}
 						autoComplete="off"
-						style={{ width: '150px', height: '75px'}}
+						style={{ width: '125px', height: '75px'}}
 						InputLabelProps={{
 							style: { color: ' #FAF9F6' }
 						}}
@@ -863,14 +871,15 @@ export default function DataCollectionPage(props: IProps) {
 						onClick={ handleSubmit }
 						disabled={ !isValid }
 						style={{ 
-							backgroundColor: '#fe5000', 
+							backgroundColor: isValid ? '#fe5000' : 'grey', 
 							color: 'white', 
 							fontSize: '1em', 
 							width: '75px',
 							height: '35px',
 							borderRadius: '5px',
 							border: 'none',
-							marginTop: '40px'
+							marginTop: '40px',
+							cursor: isValid ? 'pointer' : 'not-allowed'
 						}}
 					>
 						Submit
