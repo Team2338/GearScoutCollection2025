@@ -61,23 +61,7 @@ export default function DataCollectionPage(props: IProps) {
 		scoutTeamNumber.trim()
 		&& matchNumber.trim()
 		&& allianceColor !== AllianceColor.unknown
-
 		&& move !== Move.unknown
-		&& coralL4 >= 0
-		&& coralL3 >= 0
-		&& coralL2 >= 0
-		&& coralL1 >= 0
-		&& algeRem >= 0
-		&& process >= 0
-		&& net >= 0
-
-		&& coralL4Teleop >= 0
-		&& coralL3Teleop >= 0
-		&& coralL2Teleop >= 0
-		&& coralL1Teleop >= 0
-		&& algeRemTeleop >= 0
-		&& processTeleop >= 0
-		&& netTeleop >= 0
 		&& climb !== Climb.unknown
 	);
 
@@ -86,28 +70,6 @@ export default function DataCollectionPage(props: IProps) {
 		if (!isValid) {
 			return;
 		}
-
-		localStorage.setItem('scoutTeamNumber', scoutTeamNumber);
-		localStorage.setItem('matchNumber', matchNumber);
-		localStorage.setItem('allianceColor', allianceColor);
-
-		localStorage.setItem('move', move);
-		localStorage.setItem('coralL4', coralL4.toString());
-		localStorage.setItem('coralL3', coralL3.toString());
-		localStorage.setItem('coralL2', coralL2.toString());
-		localStorage.setItem('coralL1', coralL1.toString());
-		localStorage.setItem('algeRem', algeRem.toString());
-		localStorage.setItem('process', process.toString());
-		localStorage.setItem('net', net.toString());
-
-		localStorage.setItem('coralL4Teleop', coralL4Teleop.toString());
-		localStorage.setItem('coralL3Teleop', coralL3Teleop.toString());
-		localStorage.setItem('coralL2Teleop', coralL2Teleop.toString());
-		localStorage.setItem('coralL1Teleop', coralL1Teleop.toString());
-		localStorage.setItem('algeRemTeleop', algeRemTeleop.toString());
-		localStorage.setItem('processTeleop', processTeleop.toString());
-		localStorage.setItem('netTeleop', netTeleop.toString());
-		localStorage.setItem('climb', climb);
 
 		props.handleDataCollection({
 			scoutTeamNumber: scoutTeamNumber,
@@ -136,6 +98,48 @@ export default function DataCollectionPage(props: IProps) {
 			NetTeleop: netTeleop,
 			Climb: climb
 		});
+
+		localStorage.setItem('scoutTeamNumber', '');
+		localStorage.setItem('matchNumber', '');
+		localStorage.setItem('allianceColor', AllianceColor.unknown);
+
+		localStorage.setItem('move', Move.unknown);
+		localStorage.setItem('coralL4', '0');
+		localStorage.setItem('coralL3', '0');
+		localStorage.setItem('coralL2', '0');
+		localStorage.setItem('coralL1', '0');
+		localStorage.setItem('algeRem', '0');
+		localStorage.setItem('process', '0');
+		localStorage.setItem('net', '0');
+
+		localStorage.setItem('coralL4Teleop', '0');
+		localStorage.setItem('coralL3Teleop', '0');
+		localStorage.setItem('coralL2Teleop', '0');
+		localStorage.setItem('coralL1Teleop', '0');
+		localStorage.setItem('algeRemTeleop', '0');
+		localStorage.setItem('processTeleop', '0');
+		localStorage.setItem('netTeleop', '0');
+		localStorage.setItem('climb', Climb.unknown);
+
+		setScoutTeamNumber('');
+		setMatchNumber('');
+		setAllianceColor(AllianceColor.unknown);
+		setMove(Move.unknown);
+		setCoralL4(0);
+		setCoralL3(0);
+		setCoralL2(0);
+		setCoralL1(0);
+		setAlgeRem(0);
+		setProcess(0);
+		setNet(0);
+		setCoralL4Teleop(0);
+		setCoralL3Teleop(0);
+		setCoralL2Teleop(0);
+		setCoralL1Teleop(0);
+		setAlgeRemTeleop(0);
+		setProcessTeleop(0);
+		setNetTeleop(0);
+		setClimb(Climb.unknown);
 	};
 
 	return (
@@ -294,7 +298,7 @@ export default function DataCollectionPage(props: IProps) {
 					</ToggleButtonGroup>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l4'
 						label='Coral Level 4'
@@ -326,10 +330,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l3'
 						label='Coral Level 3'
@@ -361,10 +365,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l2'
 						label='Coral Level 2'
@@ -396,10 +400,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l1'
 						label='Coral Level 1'
@@ -431,10 +435,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='alge-rem'
 						label='Alge Rem'
@@ -466,10 +470,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='process'
 						label='Process'
@@ -501,10 +505,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='net'
 						label='Net'
@@ -536,11 +540,11 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Teleop</h1>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l4-teleop'
 						label='Coral Level 4'
@@ -572,10 +576,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l3-teleop'
 						label='Coral Level 3'
@@ -607,10 +611,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l2-teleop'
 						label='Coral Level 2'
@@ -642,10 +646,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='coral-l1-teleop'
 						label='Coral Level 1'
@@ -677,10 +681,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='alge-rem-teleop'
 						label='Alge Rem'
@@ -712,10 +716,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='process-teleop'
 						label='Process'
@@ -747,10 +751,10 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9664;</button>
+					<button type="button" onClick={() => setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<TextField
 						id='net-teleop'
 						label='Net'
@@ -782,7 +786,7 @@ export default function DataCollectionPage(props: IProps) {
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
-					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent'  }}>&#9654;</button>
+					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}>Climb</h2>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
