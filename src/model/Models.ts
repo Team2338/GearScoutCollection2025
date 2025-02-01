@@ -41,10 +41,11 @@ export interface ITeleop {
 }
 
 export enum Climb {
+	unknown = 'Unknown',
 	none = 'None',
 	park = 'Park',
 	shallow = 'Shallow',
-	deep = 'Deep',
+	deep = 'Deep'
 }
 
 export enum AllianceColor {

@@ -59,9 +59,38 @@ h2 {
     border-radius: 4px;
     background-color: #333;
     color: #fff;
-    cursor: pointer;
+    cursor: 'pointer';
 }
 
 .button:hover {
     background-color: #555;
+    cursor: pointer;
+}
+
+.header {
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.logo {
+    @media (max-width: 768px) {
+        height: 0rem;
+    }
+}
+
+.analytics {
+    @media (max-width: 768px) {
+        height: 0rem;
+        margin-bottom: -4rem;
+    }
+}
+
+.coral-level-container173 {
+    @media (min-width: 768px) {
+        margin-top: -145px;
+    }
+    @media (max-width: 769px) {
+        margin-top: -1rem;
+    }
 }
