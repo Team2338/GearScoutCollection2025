@@ -103,8 +103,6 @@ export default function DataCollectionPage(props: IProps) {
 		};
 		props.submitMatchData(matchData);
 
-		alert('Data submitted successfully!');
-
 		localStorage.setItem('scoutTeamNumber', '');
 		localStorage.setItem('matchNumber', '');
 		localStorage.setItem('allianceColor', AllianceColor.unknown);
