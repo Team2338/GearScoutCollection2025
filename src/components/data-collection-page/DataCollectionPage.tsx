@@ -11,13 +11,12 @@ interface IProps {
 	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
-//ignore eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function DataCollectionPage(props: IProps) {
 	const [ scoutTeamNumber, setScoutTeamNumber ] = useState<string>('');
 	const [ matchNumber, setMatchNumber ] = useState<string>('');
 	const [ allianceColor, setAllianceColor ] = useState<AllianceColor>(AllianceColor.unknown);
 
-	const [move, setMove] = useState<Move>(Move.unknown);
+	const [move, setMove] = useState<number>(Move.unknown);
 	const [coralL4, setCoralL4] = useState<number>(0);
 	const [coralL3, setCoralL3] = useState<number>(0);
 	const [coralL2, setCoralL2] = useState<number>(0);
@@ -33,7 +32,7 @@ export default function DataCollectionPage(props: IProps) {
 	const [algeRemTeleop, setAlgeRemTeleop] = useState<number>(0);
 	const [processTeleop, setProcessTeleop] = useState<number>(0);
 	const [netTeleop, setNetTeleop] = useState<number>(0);
-	const [climb, setClimb] = useState<Climb>(Climb.unknown);
+	const [climb, setClimb] = useState<number>(Climb.unknown);
 
 	useEffect(() => {
 		setScoutTeamNumber(localStorage.getItem('scoutTeamNumber') ?? '');
