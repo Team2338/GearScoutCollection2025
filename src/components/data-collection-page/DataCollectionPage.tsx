@@ -268,7 +268,7 @@ export default function DataCollectionPage(props: IProps) {
 						defaultValue={Move.no}
 					>
 						<ToggleButton 
-							value='No' 
+							value={ Move.no }
 							aria-label='no move' 
 							selected={move === Move.no}
 							style={{ 
@@ -284,7 +284,7 @@ export default function DataCollectionPage(props: IProps) {
 							No
 						</ToggleButton>
 						<ToggleButton 
-							value='Yes' 
+							value={ Move.yes }
 							aria-label='yes move' 
 							selected={move === Move.yes}
 							style={{ 
@@ -802,7 +802,7 @@ export default function DataCollectionPage(props: IProps) {
 						style={{ gap: '10px' }}
 					>
 						<ToggleButton
-							value='None'
+							value={ Climb.none }
 							aria-label='no climb'
 							selected={climb === Climb.none}
 							style={{ backgroundColor: climb === Climb.none ? '#fe5000' : 'transparent', color: climb === Climb.none ? 'white' : 'orange', 								
@@ -815,7 +815,7 @@ export default function DataCollectionPage(props: IProps) {
 							None
 						</ToggleButton>
 						<ToggleButton
-							value='Park'
+							value={ Climb.park }
 							aria-label='park climb'
 							selected={climb === Climb.park}
 							style={{ backgroundColor: climb === Climb.park ? '#fe5000' : 'transparent', color: climb === Climb.park ? 'white' : 'orange', 								
@@ -827,7 +827,7 @@ export default function DataCollectionPage(props: IProps) {
 							Park
 						</ToggleButton>
 						<ToggleButton
-							value='Shallow'
+							value={ Climb.shallow }
 							aria-label='shallow climb'
 							selected={climb === Climb.shallow}
 							style={{ backgroundColor: climb === Climb.shallow ? '#fe5000' : 'transparent', color: climb === Climb.shallow ? 'white' : 'orange', 								
@@ -839,7 +839,7 @@ export default function DataCollectionPage(props: IProps) {
 							Shallow
 						</ToggleButton>
 						<ToggleButton
-							value='Deep'
+							value={ Climb.deep }
 							aria-label='deep climb'
 							selected={climb === Climb.deep}
 							style={{ backgroundColor: climb === Climb.deep ? '#fe5000' : 'transparent', color: climb === Climb.deep ? 'white' : 'orange', 								
