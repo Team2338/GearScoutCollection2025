@@ -24,9 +24,9 @@ export interface IAuto {
 }
 
 export enum Move {
-	yes = 'Yes',
-	no = 'No',
-	unknown = 'Unknown'
+	yes = 2,
+	no = 1,
+	unknown = 0
 }
 
 export interface ITeleop {
@@ -40,16 +40,38 @@ export interface ITeleop {
 	Climb: string;
 }
 
+export interface IMatch {
+	gameYear: number;
+	eventCode: string;
+	matchNumber: string;
+	robotNumber: string;
+	creator: string;
+	allianceColor: string;
+	objectives: IObjective[];
+}
+
+export interface IObjective {
+	gamemode: Gamemode,
+	objective: string;
+	count: number;
+	list?: number[];
+}
+
 export enum Climb {
-	unknown = 'Unknown',
-	none = 'None',
-	park = 'Park',
-	shallow = 'Shallow',
-	deep = 'Deep'
+	unknown = 0,
+	none = 1,
+	park = 2,
+	shallow = 3,
+	deep = 4
 }
 
 export enum AllianceColor {
 	red = 'Red',
 	blue = 'Blue',
 	unknown = 'Unknown'
+}
+
+export enum Gamemode {
+	teleop = 'TELEOP',
+	auto = 'AUTO'
 }
