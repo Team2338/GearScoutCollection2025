@@ -1,5 +1,5 @@
 import './DataCollectionPage.scss';
-import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode } from '../../model/Models.ts';
+import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode, IObjective } from '../../model/Models.ts';
 import { useEffect, useState } from 'react';
 import { InputAdornment, TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 
@@ -8,10 +8,10 @@ interface IProps {
 	handleDataCollection: (user: ITeam) => void;
 	handleAuto: (auto: IAuto) => void;
 	handleTeleop: (teleop: ITeleop) => void;
-	teamData: (teamData: IMatch) => void;
+	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+//ignore eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function DataCollectionPage(props: IProps) {
 	const [ scoutTeamNumber, setScoutTeamNumber ] = useState<string>('');
 	const [ matchNumber, setMatchNumber ] = useState<string>('');
@@ -73,34 +73,38 @@ export default function DataCollectionPage(props: IProps) {
 			return;
 		}
 
-		const teamData = () => ({
+		const submitMatchData = () => ({
 			gameYear: 2025,
-			eventCode: this.props.eventCode,
-			matchNumber: this.props.matchNumber,
-			teamNumber: this.props.scoutTeamNumber,
-			creator: this.props.scouterName,
-			allianceColor: this.props.allianceColor,
-			objectives: [
-				{ gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: this.props.move },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_FOUR_2025', count: this.props.coralL4 },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_THREE_2025', count: this.props.coralL3 },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_TWO_2025', count: this.props.coralL2 },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_ONE_2025', count: this.props.coralL1 },
-				{ gamemode: Gamemode.auto, objective: 'ALGAE_REM_2025', count: this.props.algeRem },
-				{ gamemode: Gamemode.auto, objective: 'PROCESSOR_2025', count: this.props.process },
-				{ gamemode: Gamemode.auto, objective: 'NET_2025', count: this.props.net },
+			eventCode: props.user.eventCode,
+			matchNumber: matchNumber,
+			teamNumber: scoutTeamNumber,
+			creator: props.user.scouterName,
+			allianceColor: allianceColor,
+			
+			generateObjectives: (): IObjective[] => [
+				{ gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: Number(move) },
+				{ gamemode: Gamemode.auto, objective: 'CORAL_FOUR_2025', count: coralL4 },
+				{ gamemode: Gamemode.auto, objective: 'CORAL_THREE_2025', count: coralL3 },
+				{ gamemode: Gamemode.auto, objective: 'CORAL_TWO_2025', count: coralL2 },
+				{ gamemode: Gamemode.auto, objective: 'CORAL_ONE_2025', count: coralL1 },
+				{ gamemode: Gamemode.auto, objective: 'ALGAE_REM_2025', count: algeRem },
+				{ gamemode: Gamemode.auto, objective: 'LOW_GOAL_2025', count: process },
+				{ gamemode: Gamemode.auto, objective: 'HIGH_GOAL_2025', count: net },
 
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_FOUR_2025', count: this.props.coralL4Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_THREE_2025', count: this.props.coralL3Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_TWO_2025', count: this.props.coralL2Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_ONE_2025', count: this.props.coralL1Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'ALGAE_REM_2025', count: this.props.algeRemTeleop },
-				{ gamemode: Gamemode.teleop, objective: 'NET_2025', count: this.props.netTeleop },
-				{ gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: this.props.climb },
+				{ gamemode: Gamemode.teleop, objective: 'CORAL_FOUR_2025', count: coralL4Teleop },
+				{ gamemode: Gamemode.teleop, objective: 'CORAL_THREE_2025', count: coralL3Teleop },
+				{ gamemode: Gamemode.teleop, objective: 'CORAL_TWO_2025', count: coralL2Teleop },
+				{ gamemode: Gamemode.teleop, objective: 'CORAL_ONE_2025', count: coralL1Teleop },
+				{ gamemode: Gamemode.teleop, objective: 'ALGAE_REM_2025', count: algeRemTeleop },
+				{ gamemode: Gamemode.teleop, objective: 'LOW_GOAL_2025', count: processTeleop },
+				{ gamemode: Gamemode.teleop, objective: 'HIGH_GOAL_2025', count: netTeleop },
+				{ gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: Number(climb) },
 			]	
 		});
 
-		teamData();
+		submitMatchData();
+
+		alert('Data submitted successfully!');
 
 		localStorage.setItem('scoutTeamNumber', '');
 		localStorage.setItem('matchNumber', '');

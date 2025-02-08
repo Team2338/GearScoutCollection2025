@@ -6,11 +6,11 @@ type GearscoutResponse<T> = Promise<Response>;
 class GearscoutService {
 	private baseURL: string = 'https://data.gearitforward.com/';
 
-	submitMatch = (teamNumber: IUser, secretCode: IUser, match: IMatch): GearscoutResponse<void> => {
-		const url: string = `${this.baseURL}/team/${teamNumber}`;
+	submitMatch = (user: IUser, match: IMatch): GearscoutResponse<void> => {
+		const url: string = `${this.baseURL}/team/${user.teamNumber}`;
 		const headers = {
 			'Content-Type': 'application/json',
-			'secretCode': secretCode.toString()
+			'secretCode': user.secretCode.toString()
 		};
 
 		return fetch(url, {

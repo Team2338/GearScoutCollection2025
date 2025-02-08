@@ -41,32 +41,20 @@ export interface ITeleop {
 }
 
 export interface IMatch {
-	scouterName: string;
-	teamNumber: number;
+	gameYear: number;
 	eventCode: string;
-	secretCode: string;
-
-	scoutTeamNumber: string;
 	matchNumber: string;
+	robotNumber: string;
+	creator: string;
 	allianceColor: string;
-	
-	move: Move;
-	coralL4: number;
-	coralL3: number;
-	coralL2: number;
-	coralL1: number;
-	algeRem: number;
-	process: number;
-	net: number;
+	objectives: IObjective[];
+}
 
-	coralL4Teleop: number;
-	coralL3Teleop: number;
-	coralL2Teleop: number;
-	coralL1Teleop: number;
-	algeRemTeleop: number;
-	processTeleop: number;
-	netTeleop: number;
-	climb: Climb;
+export interface IObjective {
+	gamemode: Gamemode,
+	objective: string;
+	count: number;
+	list?: number[];
 }
 
 export enum Climb {

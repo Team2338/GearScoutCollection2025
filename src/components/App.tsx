@@ -3,6 +3,7 @@ import './App.scss';
 import { IUser, ITeam, IAuto, ITeleop, IMatch } from '../model/Models.ts';
 import DataCollectionPage from './data-collection-page/DataCollectionPage.tsx';
 import LoginPage from './login-page/LoginPage.tsx';
+import GearscoutService from '../services/GearScout-Service.tsx';
 
 function App() {
 	const [user, setUser] = useState<IUser>(null);
@@ -23,17 +24,24 @@ function App() {
 			console.log('Handling teleop data:', teleop);
 			// You can add more logic to process the teleop data
 		}
-		function teamData(teamData: IMatch): void {
-			// Implement the team data handling logic here
-			console.log('Handling team data:', teamData);
-			// You can add more logic to process the team data
+		function submitMatchData(match: IMatch): void {
+			// Implement the match data submission logic here
+			console.log('Submitting match data:', match);
+			// You can add more logic to handle the match data submission process
+			GearscoutService.submitMatch(user, match)
+				.then(response => {
+					console.log('Match data submitted successfully:', response);
+				})
+				.catch(error => {
+					console.error('Error submitting match data:', error);
+				});
 		}
 		return <DataCollectionPage 
 			user={ user } 
 			handleDataCollection={handleDataCollection} 
 			handleAuto={handleAuto} 
-			handleTeleop={handleTeleop} 
-			teamData={teamData} 
+			handleTeleop={handleTeleop}
+			submitMatchData={submitMatchData}
 		/>;
 	}
 
