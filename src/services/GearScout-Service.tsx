@@ -4,7 +4,7 @@ import { IMatch, IUser } from '../model/Models.ts';
 type GearscoutResponse<T> = Promise<Response>;
 
 class GearscoutService {
-	private baseURL: string = 'https://gearitforward.com';
+	private baseURL: string = 'https://gearitforward.com/api/v1';
 
 	submitMatch = (user: IUser, match: IMatch): GearscoutResponse<void> => {
 		const url: string = `${this.baseURL}/team/${user.teamNumber}`;
