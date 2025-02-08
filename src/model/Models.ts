@@ -24,9 +24,9 @@ export interface IAuto {
 }
 
 export enum Move {
-	yes = 'Yes',
-	no = 'No',
-	unknown = 'Unknown'
+	yes = 2,
+	no = 1,
+	unknown = 0
 }
 
 export interface ITeleop {
@@ -58,11 +58,11 @@ export interface IObjective {
 }
 
 export enum Climb {
-	unknown = 'Unknown',
-	none = 'None',
-	park = 'Park',
-	shallow = 'Shallow',
-	deep = 'Deep'
+	unknown = 0,
+	none = 1,
+	park = 2,
+	shallow = 3,
+	deep = 4
 }
 
 export enum AllianceColor {

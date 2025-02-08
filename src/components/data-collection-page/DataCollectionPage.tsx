@@ -40,7 +40,7 @@ export default function DataCollectionPage(props: IProps) {
 		setMatchNumber(localStorage.getItem('matchNumber') ?? '');
 		setAllianceColor(localStorage.getItem('allianceColor') as AllianceColor ?? AllianceColor.unknown);
 
-		setMove(localStorage.getItem('move') as Move ?? Move.unknown);
+		setMove(Number(localStorage.getItem('move')) || Move.unknown);
 		setCoralL4(Number(localStorage.getItem('coralL4')) || 0);
 		setCoralL3(Number(localStorage.getItem('coralL3')) || 0);
 		setCoralL2(Number(localStorage.getItem('coralL2')) || 0);
@@ -56,7 +56,7 @@ export default function DataCollectionPage(props: IProps) {
 		setAlgeRemTeleop(Number(localStorage.getItem('algeRemTeleop')) || 0);
 		setProcessTeleop(Number(localStorage.getItem('processTeleop')) || 0);
 		setNetTeleop(Number(localStorage.getItem('netTeleop')) || 0);
-		setClimb(localStorage.getItem('climb') as Climb ?? Climb.none);
+		setClimb(Number(localStorage.getItem('climb')) || Climb.none);
 	}, []);
 
 	const isValid: boolean = Boolean(
@@ -82,7 +82,7 @@ export default function DataCollectionPage(props: IProps) {
 			allianceColor: allianceColor,
 			
 			objectives: [
-				{ gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: Number(move) },
+				{ gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: move },
 				{ gamemode: Gamemode.auto, objective: 'CORAL_FOUR_2025', count: coralL4 },
 				{ gamemode: Gamemode.auto, objective: 'CORAL_THREE_2025', count: coralL3 },
 				{ gamemode: Gamemode.auto, objective: 'CORAL_TWO_2025', count: coralL2 },
@@ -107,7 +107,7 @@ export default function DataCollectionPage(props: IProps) {
 		localStorage.setItem('matchNumber', '');
 		localStorage.setItem('allianceColor', AllianceColor.unknown);
 
-		localStorage.setItem('move', Move.unknown);
+		localStorage.setItem('move', '0');
 		localStorage.setItem('coralL4', '0');
 		localStorage.setItem('coralL3', '0');
 		localStorage.setItem('coralL2', '0');
@@ -123,7 +123,7 @@ export default function DataCollectionPage(props: IProps) {
 		localStorage.setItem('algeRemTeleop', '0');
 		localStorage.setItem('processTeleop', '0');
 		localStorage.setItem('netTeleop', '0');
-		localStorage.setItem('climb', Climb.unknown);
+		localStorage.setItem('climb', '0');
 
 		setScoutTeamNumber('');
 		setMatchNumber('');
@@ -271,10 +271,10 @@ export default function DataCollectionPage(props: IProps) {
 						<ToggleButton 
 							value='No' 
 							aria-label='no move' 
-							selected={move === 'No'}
+							selected={move === Move.no}
 							style={{ 
-								backgroundColor: move ===  'No' ? '#fe5000' : 'transparent', 
-								color: move === 'No' ? 'white' : 'orange',
+								backgroundColor: move === Move.no ? '#fe5000' : 'transparent', 
+								color: move === Move.no ? 'white' : 'orange',
 								width: '75px',
 								height: '35px',
 								borderRadius: '5px',
@@ -287,10 +287,10 @@ export default function DataCollectionPage(props: IProps) {
 						<ToggleButton 
 							value='Yes' 
 							aria-label='yes move' 
-							selected={move === 'Yes'}
+							selected={move === Move.yes}
 							style={{ 
-								backgroundColor: move ===  'Yes' ? '#fe5000' : 'transparent', 
-								color: move === 'Yes' ? 'white' : 'orange',
+								backgroundColor: move === Move.yes ? '#fe5000' : 'transparent', 
+								color: move === Move.yes ? 'white' : 'orange',
 								width: '75px',
 								height: '35px',
 								borderRadius: '5px'
@@ -805,8 +805,8 @@ export default function DataCollectionPage(props: IProps) {
 						<ToggleButton
 							value='None'
 							aria-label='no climb'
-							selected={climb === 'None'}
-							style={{ backgroundColor: climb ===  'None' ? '#fe5000' : 'transparent', color: climb === 'None' ? 'white' : 'orange', 								
+							selected={climb === Climb.none}
+							style={{ backgroundColor: climb === Climb.none ? '#fe5000' : 'transparent', color: climb === Climb.none ? 'white' : 'orange', 								
 								width: '75px',
 								height: '35px',
 								borderRadius: '5px',
@@ -818,8 +818,8 @@ export default function DataCollectionPage(props: IProps) {
 						<ToggleButton
 							value='Park'
 							aria-label='park climb'
-							selected={climb === 'Park'}
-							style={{ backgroundColor: climb ===  'Park' ? '#fe5000' : 'transparent', color: climb === 'Park' ? 'white' : 'orange', 								
+							selected={climb === Climb.park}
+							style={{ backgroundColor: climb === Climb.park ? '#fe5000' : 'transparent', color: climb === Climb.park ? 'white' : 'orange', 								
 								width: '75px',
 								height: '35px',
 								borderRadius: '5px' }}
@@ -830,8 +830,8 @@ export default function DataCollectionPage(props: IProps) {
 						<ToggleButton
 							value='Shallow'
 							aria-label='shallow climb'
-							selected={climb === 'Shallow'}
-							style={{ backgroundColor: climb ===  'Shallow' ? '#fe5000' : 'transparent', color: climb === 'Shallow' ? 'white' : 'orange', 								
+							selected={climb === Climb.shallow}
+							style={{ backgroundColor: climb === Climb.shallow ? '#fe5000' : 'transparent', color: climb === Climb.shallow ? 'white' : 'orange', 								
 								width: '75px',
 								height: '35px',
 								borderRadius: '5px' }}
@@ -842,8 +842,8 @@ export default function DataCollectionPage(props: IProps) {
 						<ToggleButton
 							value='Deep'
 							aria-label='deep climb'
-							selected={climb === 'Deep'}
-							style={{ backgroundColor: climb === 'Deep' ? '#fe5000' : 'transparent', color: climb === 'Deep' ? 'white' : 'orange', 								
+							selected={climb === Climb.deep}
+							style={{ backgroundColor: climb === Climb.deep ? '#fe5000' : 'transparent', color: climb === Climb.deep ? 'white' : 'orange', 								
 								width: '75px',
 								height: '35px',
 								borderRadius: '5px' }}
