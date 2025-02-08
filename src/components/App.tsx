@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.scss';
-import { IUser, ITeam, IAuto, ITeleop } from '../model/Models.ts';
+import { IUser, ITeam, IAuto, ITeleop, IMatch } from '../model/Models.ts';
 import DataCollectionPage from './data-collection-page/DataCollectionPage.tsx';
 import LoginPage from './login-page/LoginPage.tsx';
 
@@ -23,11 +23,17 @@ function App() {
 			console.log('Handling teleop data:', teleop);
 			// You can add more logic to process the teleop data
 		}
+		function teamData(teamData: IMatch): void {
+			// Implement the team data handling logic here
+			console.log('Handling team data:', teamData);
+			// You can add more logic to process the team data
+		}
 		return <DataCollectionPage 
 			user={ user } 
 			handleDataCollection={handleDataCollection} 
 			handleAuto={handleAuto} 
 			handleTeleop={handleTeleop} 
+			teamData={teamData} 
 		/>;
 	}
 
