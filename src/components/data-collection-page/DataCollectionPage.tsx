@@ -1,5 +1,5 @@
 import './DataCollectionPage.scss';
-import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode, IObjective } from '../../model/Models.ts';
+import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode } from '../../model/Models.ts';
 import { useEffect, useState } from 'react';
 import { InputAdornment, TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 
@@ -73,15 +73,15 @@ export default function DataCollectionPage(props: IProps) {
 			return;
 		}
 
-		const submitMatchData = () => ({
+		const matchData: IMatch = {
 			gameYear: 2025,
 			eventCode: props.user.eventCode,
 			matchNumber: matchNumber,
-			teamNumber: scoutTeamNumber,
+			robotNumber: scoutTeamNumber,
 			creator: props.user.scouterName,
 			allianceColor: allianceColor,
 			
-			generateObjectives: (): IObjective[] => [
+			objectives: [
 				{ gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: Number(move) },
 				{ gamemode: Gamemode.auto, objective: 'CORAL_FOUR_2025', count: coralL4 },
 				{ gamemode: Gamemode.auto, objective: 'CORAL_THREE_2025', count: coralL3 },
@@ -99,10 +99,9 @@ export default function DataCollectionPage(props: IProps) {
 				{ gamemode: Gamemode.teleop, objective: 'LOW_GOAL_2025', count: processTeleop },
 				{ gamemode: Gamemode.teleop, objective: 'HIGH_GOAL_2025', count: netTeleop },
 				{ gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: Number(climb) },
-			]	
-		});
-
-		submitMatchData();
+			]
+		};
+		props.submitMatchData(matchData);
 
 		alert('Data submitted successfully!');
 
