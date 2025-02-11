@@ -1,29 +1,23 @@
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { IMatch, IUser } from '../model/Models.ts';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-type GearscoutResponse<T> = Promise<Response>;
+type GearscoutResponse<T> = Promise<AxiosResponse<T>>;
 
 class GearscoutService {
-	private baseURL: string = 'https://gearitforward.com/api/v1';
+	private service: AxiosInstance = axios.create({
+		baseURL: 'https://gearitforward.com/api/v1'
+	});
 
 	submitMatch = (user: IUser, match: IMatch): GearscoutResponse<void> => {
-		const url: string = `${this.baseURL}/team/${user.teamNumber}`;
-		const headers = {
-			'Content-Type': 'application/json',
-			'secretCode': user.secretCode.toString()
+		const url: string = `/team/${user.teamNumber}`;
+		const config: AxiosRequestConfig = {
+			headers: {
+				'Content-Type': 'application/json',
+				'secretCode': user.secretCode
+			}
 		};
 
-		return fetch(url, {
-			method: 'POST',
-			headers: headers,
-			body: JSON.stringify(match)
-		})
-			.then(response => {
-				if (!response.ok) {
-					throw new Error('Failed to send data to server');
-				}
-				return response;
-			});
+		return this.service.post(url, match, config);
 	};
 }
 
