@@ -11,13 +11,12 @@ interface IProps {
 	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
-//ignore eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function DataCollectionPage(props: IProps) {
 	const [ scoutTeamNumber, setScoutTeamNumber ] = useState<string>('');
 	const [ matchNumber, setMatchNumber ] = useState<string>('');
 	const [ allianceColor, setAllianceColor ] = useState<AllianceColor>(AllianceColor.unknown);
 
-	const [move, setMove] = useState<Move>(Move.unknown);
+	const [move, setMove] = useState<number>(Move.unknown);
 	const [coralL4, setCoralL4] = useState<number>(0);
 	const [coralL3, setCoralL3] = useState<number>(0);
 	const [coralL2, setCoralL2] = useState<number>(0);
@@ -33,7 +32,7 @@ export default function DataCollectionPage(props: IProps) {
 	const [algeRemTeleop, setAlgeRemTeleop] = useState<number>(0);
 	const [processTeleop, setProcessTeleop] = useState<number>(0);
 	const [netTeleop, setNetTeleop] = useState<number>(0);
-	const [climb, setClimb] = useState<Climb>(Climb.unknown);
+	const [climb, setClimb] = useState<number>(Climb.unknown);
 
 	useEffect(() => {
 		setScoutTeamNumber(localStorage.getItem('scoutTeamNumber') ?? '');
@@ -269,7 +268,7 @@ export default function DataCollectionPage(props: IProps) {
 						defaultValue={Move.no}
 					>
 						<ToggleButton 
-							value={Move.no} 
+							value={ Move.no }
 							aria-label='no move' 
 							selected={move === Move.no}
 							style={{ 
@@ -285,7 +284,7 @@ export default function DataCollectionPage(props: IProps) {
 							No
 						</ToggleButton>
 						<ToggleButton 
-							value={Move.yes} 
+							value='Yes' 
 							aria-label='yes move' 
 							selected={move === Move.yes}
 							style={{ 
@@ -466,7 +465,7 @@ export default function DataCollectionPage(props: IProps) {
 						style={{ gap: '10px' }}
 					>
 						<ToggleButton
-							value= { Climb.none }
+							value='None'
 							aria-label='no climb'
 							selected={climb === Climb.none}
 							style={{ backgroundColor: climb === Climb.none ? '#fe5000' : 'transparent', color: climb === Climb.none ? 'white' : 'orange', 								
@@ -479,7 +478,7 @@ export default function DataCollectionPage(props: IProps) {
 							None
 						</ToggleButton>
 						<ToggleButton
-							value= {Climb.park}
+							value='Park'
 							aria-label='park climb'
 							selected={climb === Climb.park}
 							style={{ backgroundColor: climb === Climb.park ? '#fe5000' : 'transparent', color: climb === Climb.park ? 'white' : 'orange', 								
@@ -491,7 +490,7 @@ export default function DataCollectionPage(props: IProps) {
 							Park
 						</ToggleButton>
 						<ToggleButton
-							value= {Climb.shallow}
+							value='Shallow'
 							aria-label='shallow climb'
 							selected={climb === Climb.shallow}
 							style={{ backgroundColor: climb === Climb.shallow ? '#fe5000' : 'transparent', color: climb === Climb.shallow ? 'white' : 'orange', 								
@@ -503,7 +502,7 @@ export default function DataCollectionPage(props: IProps) {
 							Shallow
 						</ToggleButton>
 						<ToggleButton
-							value= {Climb.deep}
+							value='Deep'
 							aria-label='deep climb'
 							selected={climb === Climb.deep}
 							style={{ backgroundColor: climb === Climb.deep ? '#fe5000' : 'transparent', color: climb === Climb.deep ? 'white' : 'orange', 								
