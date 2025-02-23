@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.scss';
 import { IUser, IMatch } from '../model/Models.ts';
 import DataCollectionPage from './data-collection-page/DataCollectionPage.tsx';
@@ -27,12 +27,10 @@ export default function App() {
 	}, []);
 
 	function submitMatchData(match: IMatch): void {
-		// Implement the match data submission logic here
-		console.log('Submitting match data:', match);
-		// You can add more logic to handle the match data submission process
+		console.log('Submitting match data', match);
 		GearscoutService.submitMatch(user, match)
 			.then(response => {
-				console.log('Match data submitted successfully:', response);
+				console.log('Match data submitted successfully', response);
 			})
 			.catch(error => {
 				console.error('Error submitting match data:', error);

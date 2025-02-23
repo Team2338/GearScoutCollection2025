@@ -27,12 +27,12 @@ self.addEventListener('install', (event: ExtendableEvent) => {
 	event.waitUntil(
 		caches.open(cacheName)
 			.then((cache: Cache) => cache.addAll(precacheUrls))
-			.then(() => console.log(`Finished installing ${version}`))
+			.then(() => console.log(`Finished installing v${version}`))
 	);
 });
 
 self.addEventListener('activate', (event: ExtendableEvent) => {
-	console.log(`Activating service worker ${version}...`);
+	console.log(`Activating service worker v${version}...`);
 
 	// Delete all old caches matching our prefix
 	event.waitUntil(
@@ -40,6 +40,7 @@ self.addEventListener('activate', (event: ExtendableEvent) => {
 			.then((keys: string[]) => {
 				keys.forEach((key: string) => {
 					if (key.startsWith(cachePrefix) && key !== cacheName) {
+						console.log(`Deleting cache ${key}`);
 						caches.delete(key);
 					}
 				});
