@@ -1,7 +1,7 @@
 import './DataCollectionPage.scss';
 import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode } from '../../model/Models.ts';
 import { useEffect, useState } from 'react';
-import { InputAdornment, TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
+import { TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 
 interface IProps {
 	user: IUser;
@@ -39,7 +39,7 @@ export default function DataCollectionPage(props: IProps) {
 		setMatchNumber(localStorage.getItem('matchNumber') ?? '');
 		setAllianceColor(localStorage.getItem('allianceColor') as AllianceColor ?? AllianceColor.unknown);
 
-		setMove(Number(localStorage.getItem('move')) || Move.unknown);
+		setMove(Number(localStorage.getItem('move')) || Move.no);
 		setCoralL4(Number(localStorage.getItem('coralL4')) || 0);
 		setCoralL3(Number(localStorage.getItem('coralL3')) || 0);
 		setCoralL2(Number(localStorage.getItem('coralL2')) || 0);
@@ -224,11 +224,11 @@ export default function DataCollectionPage(props: IProps) {
 						style={{ gap: '10px' }}
 					>
 						<ToggleButton 
-							value='Red' 
-							aria-label='red alliance' 
+							value={ AllianceColor.red }
+							aria-label='red alliance'
 							selected={allianceColor === 'Red'}
-							style={{ backgroundColor: allianceColor === 'Red' ? '#ff0000' : 'transparent', 
-								color: allianceColor === AllianceColor.red ? 'white' : 'orange', 
+							style={{ backgroundColor: allianceColor === 'Red' ? '#ff0000' : 'transparent',
+								color: allianceColor === AllianceColor.red ? 'white' : 'orange',
 								width: '135px',
 								height: '35px',
 								borderRadius: '5px',
@@ -239,7 +239,7 @@ export default function DataCollectionPage(props: IProps) {
 							Red Alliance
 						</ToggleButton>
 						<ToggleButton 
-							value='Blue' 
+							value={ AllianceColor.blue }
 							aria-label='blue alliance' 
 							selected={allianceColor === 'Blue'}
 							style={{ backgroundColor: allianceColor === 'Blue' ? '#0000ff' : 'transparent', 
@@ -300,497 +300,160 @@ export default function DataCollectionPage(props: IProps) {
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l4'
-						label='Coral Level 4'
-						name='coralL4'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL4 }
-						onChange={ (event) => setCoralL4(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 4
+				</div>
+				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+					<button type="button" onClick={() => coralL4 > 0 && setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL4}
+					</div>
 					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 3
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l3'
-						label='Coral Level 3'
-						name='coralL3'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL3 }
-						onChange={ (event) => setCoralL3(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center', appearance: 'none' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => coralL3 > 0 && setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL3}
+					</div>
 					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 2
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l2'
-						label='Coral Level 2'
-						name='coralL2'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL2 }
-						onChange={ (event) => setCoralL2(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() =>  coralL2 > 0 && setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL2}
+					</div>
 					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 1
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l1'
-						label='Coral Level 1'
-						name='coralL1'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL1 }
-						onChange={ (event) => setCoralL1(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() =>  coralL1 > 0 && setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL1}
+					</div>
 					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Algae Rem
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='alge-rem'
-						label='Alge Rem'
-						name='algeRem'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ algeRem }
-						onChange={ (event) => setAlgeRem(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() =>  algeRem > 0 && setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{algeRem}
+					</div>
 					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Processor
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='process'
-						label='Process'
-						name='process'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ process }
-						onChange={ (event) => setProcess(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() =>  process > 0 && setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{process}
+					</div>
 					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Net
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='net'
-						label='Net'
-						name='net'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ net }
-						onChange={ (event) => setNet(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() =>  net > 0 && setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{net}
+					</div>
 					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
 				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Teleop</h1>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 4
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l4-teleop'
-						label='Coral Level 4'
-						name='coralL4Teleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL4Teleop }
-						onChange={ (event) => setCoralL4Teleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() =>  coralL4Teleop > 0 && setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL4Teleop}
+					</div>
 					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 3
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l3-teleop'
-						label='Coral Level 3'
-						name='coralL3Teleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL3Teleop }
-						onChange={ (event) => setCoralL3Teleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => coralL3Teleop > 0 && setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL3Teleop}
+					</div>
 					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 2
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l2-teleop'
-						label='Coral Level 2'
-						name='coralL2Teleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL2Teleop }
-						onChange={ (event) => setCoralL2Teleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => coralL2Teleop > 0 && setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL2Teleop}
+					</div>
 					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Coral Level 1
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='coral-l1-teleop'
-						label='Coral Level 1'
-						name='coralL1Teleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ coralL1Teleop }
-						onChange={ (event) => setCoralL1Teleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => coralL1Teleop > 0 && setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{coralL1Teleop}
+					</div>
 					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Algae Rem
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='alge-rem-teleop'
-						label='Alge Rem'
-						name='algeRemTeleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ algeRemTeleop }
-						onChange={ (event) => setAlgeRemTeleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => algeRemTeleop > 0 && setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{algeRemTeleop}
+					</div>
 					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Processor
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='process-teleop'
-						label='Process'
-						name='processTeleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ processTeleop }
-						onChange={ (event) => setProcessTeleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => processTeleop > 0 && setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{processTeleop}
+					</div>
 					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+					Net
+				</div>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<TextField
-						id='net-teleop'
-						label='Net'
-						name='netTeleop'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ netTeleop }
-						onChange={ (event) => setNetTeleop(Number(event.target.value)) }
-						slotProps={{
-							input: {
-								startAdornment: <InputAdornment position='start'>#</InputAdornment>
-							},
-							htmlInput:
-							{
-								min: 0,
-								max: 99,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
-							}
-						}}
-						autoComplete="off"
-						InputProps={{
-							inputProps: { style: { textAlign: 'center' } },
-							endAdornment: null
-						}}
-						style={{ padding: '0 10px',
-							marginBottom: '15px' }}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
+					<button type="button" onClick={() => netTeleop > 0 && setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
+					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+        				{netTeleop}
+					</div>
 					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
+				
 				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}>Climb</h2>
 				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 					<ToggleButtonGroup
