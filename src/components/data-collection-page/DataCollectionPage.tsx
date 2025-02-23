@@ -1,13 +1,10 @@
 import './DataCollectionPage.scss';
-import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode } from '../../model/Models.ts';
+import { AllianceColor, Move, Climb, IUser, IMatch, Gamemode } from '../../model/Models.ts';
 import { useEffect, useState } from 'react';
 import { TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 
 interface IProps {
 	user: IUser;
-	handleDataCollection: (user: ITeam) => void;
-	handleAuto: (auto: IAuto) => void;
-	handleTeleop: (teleop: ITeleop) => void;
 	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
