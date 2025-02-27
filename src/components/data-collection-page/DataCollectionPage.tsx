@@ -1,13 +1,10 @@
 import './DataCollectionPage.scss';
-import { AllianceColor, Move, Climb, IUser, ITeam, IAuto, ITeleop, IMatch, Gamemode } from '../../model/Models.ts';
+import { AllianceColor, Move, Climb, IUser, IMatch, Gamemode } from '../../model/Models.ts';
 import { useEffect, useState } from 'react';
 import { TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
 
 interface IProps {
 	user: IUser;
-	handleDataCollection: (user: ITeam) => void;
-	handleAuto: (auto: IAuto) => void;
-	handleTeleop: (teleop: ITeleop) => void;
 	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
@@ -225,11 +222,11 @@ export default function DataCollectionPage(props: IProps) {
 						style={{ gap: '10px' }}
 					>
 						<ToggleButton 
-							value='Red' 
-							aria-label='red alliance' 
+							value={ AllianceColor.red }
+							aria-label='red alliance'
 							selected={allianceColor === 'Red'}
-							style={{ backgroundColor: allianceColor === 'Red' ? '#ff0000' : 'transparent', 
-								color: allianceColor === AllianceColor.red ? 'white' : 'orange', 
+							style={{ backgroundColor: allianceColor === 'Red' ? '#ff0000' : 'transparent',
+								color: allianceColor === AllianceColor.red ? 'white' : 'orange',
 								width: '135px',
 								height: '35px',
 								borderRadius: '5px',
@@ -240,7 +237,7 @@ export default function DataCollectionPage(props: IProps) {
 							Red Alliance
 						</ToggleButton>
 						<ToggleButton 
-							value='Blue' 
+							value={ AllianceColor.blue }
 							aria-label='blue alliance' 
 							selected={allianceColor === 'Blue'}
 							style={{ backgroundColor: allianceColor === 'Blue' ? '#0000ff' : 'transparent', 

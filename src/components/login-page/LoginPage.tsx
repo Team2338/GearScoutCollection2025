@@ -52,6 +52,10 @@ export default function LoginPage(props: IProps) {
 
 	return (
 		<main className="page login-page">
+			<div className="title">
+				<div className="app-name">GearScout</div>
+				<div className="version">v{ import.meta.env.VITE_APP_VERSION }</div>
+			</div>
 			<form
 				className="login-form"
 				onSubmit={ handleSubmit }
