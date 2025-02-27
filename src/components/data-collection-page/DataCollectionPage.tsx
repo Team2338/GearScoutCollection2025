@@ -146,13 +146,14 @@ export default function DataCollectionPage(props: IProps) {
 	};
 
 	return (
-		<main className="page data-collection-page">
+		<main className="data-collection-page">
 			<form
 				className='data-collection-form'
 				onSubmit={ handleSubmit }
 				aria-labelledby='data-collection-form-header'
+				style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
 			>
-				<div className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#00243e', margin: '10px' }}>
+				<div className="header">
 					<div className="logo">
 						<img src="logos/192-pwa.png" alt="2338 logo" height="100rem"/>
 					</div>
@@ -160,7 +161,7 @@ export default function DataCollectionPage(props: IProps) {
 						<Button sx={{ m: 0.5 }} variant="contained" href="https://data.gearitforward.com/">Analytics</Button>
 					</div>
 				</div>
-				<div className="coral-level-container173" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container">
 					<TextField
 						id='scout-team-number'
 						label='Team Number'
@@ -189,7 +190,7 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 					/>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<TextField
 						id='match-number'
 						label='Match Number'
@@ -214,7 +215,7 @@ export default function DataCollectionPage(props: IProps) {
 						}}
 					/>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<ToggleButtonGroup
 						id='alliance-color'
 						value={ allianceColor }
@@ -255,9 +256,9 @@ export default function DataCollectionPage(props: IProps) {
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</div>
-				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Auto</h1>
-				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Move</h2>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<h1 className="coral-level-container" >Auto</h1>
+				<h2 className="coral-level-container" >Move</h2>
+				<div className="coral-level-container" >
 					<ToggleButtonGroup
 						id='move'
 						value={ move }
@@ -284,7 +285,7 @@ export default function DataCollectionPage(props: IProps) {
 							No
 						</ToggleButton>
 						<ToggleButton 
-							value='Yes' 
+							value={ Move.yes }
 							aria-label='yes move' 
 							selected={move === Move.yes}
 							style={{ 
@@ -300,10 +301,10 @@ export default function DataCollectionPage(props: IProps) {
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</div>
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 4
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+				<div className="coral-level-container-white" >
 					<button type="button" onClick={() => coralL4 > 0 && setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL4}
@@ -311,10 +312,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 3
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() => coralL3 > 0 && setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL3}
@@ -322,10 +323,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 2
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() =>  coralL2 > 0 && setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL2}
@@ -333,10 +334,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 1
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() =>  coralL1 > 0 && setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL1}
@@ -344,10 +345,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Algae Rem
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() =>  algeRem > 0 && setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{algeRem}
@@ -355,10 +356,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Processor
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() =>  process > 0 && setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{process}
@@ -366,10 +367,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Net
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() =>  net > 0 && setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{net}
@@ -377,12 +378,12 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Teleop</h1>
+				<h1 className="coral-level-container" >Teleop</h1>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 4
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() =>  coralL4Teleop > 0 && setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL4Teleop}
@@ -390,20 +391,20 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 3
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() => coralL3Teleop > 0 && setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL3Teleop}
 					</div>
 					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 2
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() => coralL2Teleop > 0 && setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL2Teleop}
@@ -411,10 +412,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Coral Level 1
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button type="button" onClick={() => coralL1Teleop > 0 && setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{coralL1Teleop}
@@ -422,10 +423,10 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Algae Rem
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className='coral-level-container'>
 					<button type="button" onClick={() => algeRemTeleop > 0 && setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{algeRemTeleop}
@@ -433,29 +434,31 @@ export default function DataCollectionPage(props: IProps) {
 					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
 				</div>
 
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Processor
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className='coral-level-container'>
 					<button type="button" onClick={() => processTeleop > 0 && setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{processTeleop}
 					</div>
 					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+				
 				</div>
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
+				<div className='counter-names'>
 					Net
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className='coral-level-container'>
 					<button type="button" onClick={() => netTeleop > 0 && setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
 					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
         				{netTeleop}
 					</div>
 					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+
 				</div>
 				
-				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}>Climb</h2>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<h2 className="climb-name" >Climb</h2>	
+				<div className="coral-level-container" >
 					<ToggleButtonGroup
 						id='climb'
 						value={ climb }
@@ -465,7 +468,7 @@ export default function DataCollectionPage(props: IProps) {
 						style={{ gap: '10px' }}
 					>
 						<ToggleButton
-							value='None'
+							value={ Climb.none }
 							aria-label='no climb'
 							selected={climb === Climb.none}
 							style={{ backgroundColor: climb === Climb.none ? '#fe5000' : 'transparent', color: climb === Climb.none ? 'white' : 'orange', 								
@@ -478,7 +481,7 @@ export default function DataCollectionPage(props: IProps) {
 							None
 						</ToggleButton>
 						<ToggleButton
-							value='Park'
+							value={ Climb.park }
 							aria-label='park climb'
 							selected={climb === Climb.park}
 							style={{ backgroundColor: climb === Climb.park ? '#fe5000' : 'transparent', color: climb === Climb.park ? 'white' : 'orange', 								
@@ -490,7 +493,7 @@ export default function DataCollectionPage(props: IProps) {
 							Park
 						</ToggleButton>
 						<ToggleButton
-							value='Shallow'
+							value={ Climb.shallow }
 							aria-label='shallow climb'
 							selected={climb === Climb.shallow}
 							style={{ backgroundColor: climb === Climb.shallow ? '#fe5000' : 'transparent', color: climb === Climb.shallow ? 'white' : 'orange', 								
@@ -502,7 +505,7 @@ export default function DataCollectionPage(props: IProps) {
 							Shallow
 						</ToggleButton>
 						<ToggleButton
-							value='Deep'
+							value={ Climb.deep }
 							aria-label='deep climb'
 							selected={climb === Climb.deep}
 							style={{ backgroundColor: climb === Climb.deep ? '#fe5000' : 'transparent', color: climb === Climb.deep ? 'white' : 'orange', 								
@@ -515,7 +518,7 @@ export default function DataCollectionPage(props: IProps) {
 						</ToggleButton>
 					</ToggleButtonGroup>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+				<div className="coral-level-container" >
 					<button
 						type='button'
 						className='back-button'
