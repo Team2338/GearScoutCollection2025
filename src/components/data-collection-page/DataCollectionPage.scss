@@ -68,25 +68,6 @@ h2 {
     cursor: pointer;
 }
 
-.header {
-    @media (max-width: 768px) {
-        display: none;
-    }
-}
-
-.logo {
-    @media (max-width: 768px) {
-        height: 0rem;
-    }
-}
-
-.analytics {
-    @media (max-width: 768px) {
-        height: 0rem;
-        margin-bottom: -4rem;
-    }
-}
-
 .data-collection-page { 
     display: flex;
     justify-content: center;
@@ -97,30 +78,39 @@ h2 {
     width: 100%;
     text-align: center;
     background-color: $blue;
-    margin: 0 auto; // Center the content horizontally
+    margin: 0 auto;
 
     .data-collection-form {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        width: 100%; // Ensure the form takes full width
-        margin: 0 auto; // Center the form horizontally
 
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             background-color: $blue;
             margin: 10px;
-            width: 100%; // Ensure the header takes full width
             
             .logo {
+            display: flex;
+            justify-content: center;
+            background-color: $blue;
+            margin-left: 0vw;
+            @media (max-width: 768px) {
                 display: flex;
-                justify-content: space-between;
-                align-items: center;
-                background-color: $blue;
-                margin: 10px;
+                height: 15vw;
+            }
+            }
+            .analytics {
+            display: flex;
+            justify-content: center;
+            background-color: $blue;
+            margin-left: 75vw;
+            @media (max-width: 768px) {
+                display: none;
+            }
             }
         }
         
