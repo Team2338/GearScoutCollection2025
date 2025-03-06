@@ -14,6 +14,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: $blue;
+    overflow-x: hidden;
 }
 body, h1 {
     color: $orange;
@@ -29,6 +30,7 @@ h2 {
     margin-bottom: 15px;
     color: $offwhite;
 }
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -107,7 +109,7 @@ h2 {
             display: flex;
             justify-content: center;
             background-color: $blue;
-            margin-left: 75vw;
+            margin-left: 70vw;
             @media (max-width: 768px) {
                 display: none;
             }
@@ -129,6 +131,14 @@ h2 {
             margin: 0 auto;
             background-color: $blue;
         }
+
+        .coral-level-container-og {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            background-color: $blue;
+        }
         
         .coral-level-container {
             display: flex;
@@ -137,6 +147,23 @@ h2 {
             margin-bottom: 15px;
             background-color: $blue;
         }
+            .Button-1 {
+                color: white;
+                background: #fe5000;
+                height: 35px;
+                border-radius: 5px;
+                border-color: transparent;
+                width: 55px;
+            }
+            .Styles-1 {
+                padding: 0 5px;
+                margin-bottom: 15px;
+                color: $offwhite;
+                text-align: center;
+                width: 85px;
+                height: 35px;
+                line-height: 35px;
+            }
         
         .coral-level-container-white {
             display: flex;

@@ -158,7 +158,7 @@ export default function DataCollectionPage(props: IProps) {
 						<Button sx={{ m: 0.5 }} variant="contained" href="https://data.gearitforward.com/">Analytics</Button>
 					</div>
 				</div>
-				<div className="coral-level-container">
+				<div className="coral-level-container-og">
 					<TextField
 						id='scout-team-number'
 						label='Team Number'
@@ -179,15 +179,12 @@ export default function DataCollectionPage(props: IProps) {
 						autoComplete="off"
 						style={{ width: '125px', accentColor: 'orange', height: '60px' }}
 						autoFocus={true}
-						InputProps={{
-							disableUnderline: true
-						}}
 						InputLabelProps={{
 							style: { color: ' #FAF9F6' }
 						}}
 					/>
 				</div>
-				<div className="coral-level-container" >
+				<div className="coral-level-container-og" >
 					<TextField
 						id='match-number'
 						label='Match Number'
@@ -254,7 +251,7 @@ export default function DataCollectionPage(props: IProps) {
 					</ToggleButtonGroup>
 				</div>
 				<h1 className="coral-level-container" >Auto</h1>
-				<h2 className="coral-level-container" >Move</h2>
+				<h2 className="coral-level-container" >Leave</h2>
 				<div className="coral-level-container" >
 					<ToggleButtonGroup
 						id='move'
@@ -302,77 +299,77 @@ export default function DataCollectionPage(props: IProps) {
 					Coral Level 4
 				</div>
 				<div className="coral-level-container-white" >
-					<button type="button" onClick={() => coralL4 > 0 && setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL4}
+					<button type="button" onClick={() => coralL4 > 0 && setCoralL4(coralL4 - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
+						{coralL4}
 					</div>
-					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Coral Level 3
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() => coralL3 > 0 && setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => coralL3 > 0 && setCoralL3(coralL3 - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL3}
 					</div>
-					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Coral Level 2
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() =>  coralL2 > 0 && setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() =>  coralL2 > 0 && setCoralL2(coralL2 - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL2}
 					</div>
-					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Coral Level 1
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() =>  coralL1 > 0 && setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() =>  coralL1 > 0 && setCoralL1(coralL1 - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL1}
 					</div>
-					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Algae Rem
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() =>  algeRem > 0 && setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() =>  algeRem > 0 && setAlgeRem(algeRem - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{algeRem}
 					</div>
-					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Processor
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() =>  process > 0 && setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() =>  process > 0 && setProcess(process - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{process}
 					</div>
-					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setProcess(process + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Net
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() =>  net > 0 && setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() =>  net > 0 && setNet(net - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{net}
 					</div>
-					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setNet(net + 1)} className='Button-1'>+</button>
 				</div>
 
 				<h1 className="coral-level-container" >Teleop</h1>
@@ -381,76 +378,76 @@ export default function DataCollectionPage(props: IProps) {
 					Coral Level 4
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() =>  coralL4Teleop > 0 && setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() =>  coralL4Teleop > 0 && setCoralL4Teleop(coralL4Teleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL4Teleop}
 					</div>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Coral Level 3
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() => coralL3Teleop > 0 && setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => coralL3Teleop > 0 && setCoralL3Teleop(coralL3Teleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL3Teleop}
 					</div>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} className='Button-1'>+</button>
 				</div>
 				<div className='counter-names'>
 					Coral Level 2
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() => coralL2Teleop > 0 && setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => coralL2Teleop > 0 && setCoralL2Teleop(coralL2Teleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL2Teleop}
 					</div>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Coral Level 1
 				</div>
 				<div className="coral-level-container" >
-					<button type="button" onClick={() => coralL1Teleop > 0 && setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => coralL1Teleop > 0 && setCoralL1Teleop(coralL1Teleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{coralL1Teleop}
 					</div>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Algae Rem
 				</div>
 				<div className='coral-level-container'>
-					<button type="button" onClick={() => algeRemTeleop > 0 && setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => algeRemTeleop > 0 && setAlgeRemTeleop(algeRemTeleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{algeRemTeleop}
 					</div>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} className='Button-1'>+</button>
 				</div>
 
 				<div className='counter-names'>
 					Processor
 				</div>
 				<div className='coral-level-container'>
-					<button type="button" onClick={() => processTeleop > 0 && setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => processTeleop > 0 && setProcessTeleop(processTeleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{processTeleop}
 					</div>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } className='Button-1'>+</button>
 				
 				</div>
 				<div className='counter-names'>
 					Net
 				</div>
 				<div className='coral-level-container'>
-					<button type="button" onClick={() => netTeleop > 0 && setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
+					<button type="button" onClick={() => netTeleop > 0 && setNetTeleop(netTeleop - 1)} className='Button-1'>-</button>
+					<div className="Styles-1">
         				{netTeleop}
 					</div>
-					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
+					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} className='Button-1'>+</button>
 
 				</div>
 				
