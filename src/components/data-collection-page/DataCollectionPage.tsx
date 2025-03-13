@@ -1,7 +1,7 @@
 import './DataCollectionPage.scss';
-import { AllianceColor, Move, Climb, IUser, IMatch, Gamemode } from '../../model/Models.ts';
+import { Button, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { TextField, ToggleButton, ToggleButtonGroup, Button } from '@mui/material';
+import { AllianceColor, Climb, Gamemode, IMatch, IUser, Move } from '../../model/Models.ts';
 
 interface IProps {
 	user: IUser;
@@ -9,9 +9,9 @@ interface IProps {
 }
 
 export default function DataCollectionPage(props: IProps) {
-	const [ scoutTeamNumber, setScoutTeamNumber ] = useState<string>('');
-	const [ matchNumber, setMatchNumber ] = useState<string>('');
-	const [ allianceColor, setAllianceColor ] = useState<AllianceColor>(AllianceColor.unknown);
+	const [scoutTeamNumber, setScoutTeamNumber] = useState<string>('');
+	const [matchNumber, setMatchNumber] = useState<string>('');
+	const [allianceColor, setAllianceColor] = useState<AllianceColor>(AllianceColor.unknown);
 
 	const [move, setMove] = useState<number>(Move.unknown);
 	const [coralL4, setCoralL4] = useState<number>(0);
@@ -76,25 +76,25 @@ export default function DataCollectionPage(props: IProps) {
 			robotNumber: scoutTeamNumber,
 			creator: props.user.scouterName,
 			allianceColor: allianceColor,
-			
-			objectives: [
-				{ gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: move },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_FOUR_2025', count: coralL4 },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_THREE_2025', count: coralL3 },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_TWO_2025', count: coralL2 },
-				{ gamemode: Gamemode.auto, objective: 'CORAL_ONE_2025', count: coralL1 },
-				{ gamemode: Gamemode.auto, objective: 'ALGAE_REM_2025', count: algeRem },
-				{ gamemode: Gamemode.auto, objective: 'LOW_GOAL_2025', count: process },
-				{ gamemode: Gamemode.auto, objective: 'HIGH_GOAL_2025', count: net },
 
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_FOUR_2025', count: coralL4Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_THREE_2025', count: coralL3Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_TWO_2025', count: coralL2Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'CORAL_ONE_2025', count: coralL1Teleop },
-				{ gamemode: Gamemode.teleop, objective: 'ALGAE_REM_2025', count: algeRemTeleop },
-				{ gamemode: Gamemode.teleop, objective: 'LOW_GOAL_2025', count: processTeleop },
-				{ gamemode: Gamemode.teleop, objective: 'HIGH_GOAL_2025', count: netTeleop },
-				{ gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: Number(climb) },
+			objectives: [
+				{gamemode: Gamemode.auto, objective: 'MOBILITY_2025', count: move},
+				{gamemode: Gamemode.auto, objective: 'CORAL_FOUR_2025', count: coralL4},
+				{gamemode: Gamemode.auto, objective: 'CORAL_THREE_2025', count: coralL3},
+				{gamemode: Gamemode.auto, objective: 'CORAL_TWO_2025', count: coralL2},
+				{gamemode: Gamemode.auto, objective: 'CORAL_ONE_2025', count: coralL1},
+				{gamemode: Gamemode.auto, objective: 'ALGAE_REM_2025', count: algeRem},
+				{gamemode: Gamemode.auto, objective: 'LOW_GOAL_2025', count: process},
+				{gamemode: Gamemode.auto, objective: 'HIGH_GOAL_2025', count: net},
+
+				{gamemode: Gamemode.teleop, objective: 'CORAL_FOUR_2025', count: coralL4Teleop},
+				{gamemode: Gamemode.teleop, objective: 'CORAL_THREE_2025', count: coralL3Teleop},
+				{gamemode: Gamemode.teleop, objective: 'CORAL_TWO_2025', count: coralL2Teleop},
+				{gamemode: Gamemode.teleop, objective: 'CORAL_ONE_2025', count: coralL1Teleop},
+				{gamemode: Gamemode.teleop, objective: 'ALGAE_REM_2025', count: algeRemTeleop},
+				{gamemode: Gamemode.teleop, objective: 'LOW_GOAL_2025', count: processTeleop},
+				{gamemode: Gamemode.teleop, objective: 'HIGH_GOAL_2025', count: netTeleop},
+				{gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: Number(climb)},
 			]
 		};
 		props.submitMatchData(matchData);
@@ -145,409 +145,299 @@ export default function DataCollectionPage(props: IProps) {
 	return (
 		<main className="page data-collection-page">
 			<form
-				className='data-collection-form'
+				className="data-collection-form"
 				onSubmit={ handleSubmit }
-				aria-labelledby='data-collection-form-header'
+				aria-labelledby="data-collection-form-header"
 			>
-				<div className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#00243e', margin: '10px' }}>
+				<div className="header">
 					<div className="logo">
-						<img src="logos/192-pwa.png" alt="2338 logo" height="100rem"/>
+						<img src="logos/192-pwa.png" alt="2338 logo" height="100rem" />
 					</div>
 					<div className="analytics">
-						<Button sx={{ m: 0.5 }} variant="contained" href="https://data.gearitforward.com/">Analytics</Button>
+						<Button sx={{m: 0.5}} variant="contained" href="https://data.gearitforward.com/">Analytics</Button>
 					</div>
 				</div>
-				<div className="coral-level-container173" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<TextField
-						id='scout-team-number'
-						label='Team Number'
-						name='scoutTeamNumber'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ scoutTeamNumber }
-						onChange={ (event) => setScoutTeamNumber(event.target.value) }
-						slotProps={{
-							htmlInput:
+				<TextField
+					id="scout-team-number"
+					label="Team Number"
+					name="scoutTeamNumber"
+					type="number"
+					margin="normal"
+					variant="outlined"
+					value={ scoutTeamNumber }
+					onChange={ (event) => setScoutTeamNumber(event.target.value) }
+					slotProps={{
+						htmlInput:
 							{
 								min: 0,
 								max: 99999,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
-						}}
-						autoComplete="off"
-						style={{ width: '125px', accentColor: 'orange', height: '60px' }}
-						autoFocus={true}
-						InputProps={{
-							disableUnderline: true
-						}}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<TextField
-						id='match-number'
-						label='Match Number'
-						name='matchNumber'
-						type='number'
-						margin='dense'
-						variant='outlined'
-						value={ matchNumber }
-						onChange={ (event) => setMatchNumber(event.target.value) }
-						slotProps={{
-							htmlInput:
+					}}
+					autoComplete="off"
+					autoFocus={ true }
+				/>
+				<TextField
+					id="match-number"
+					label="Match Number"
+					name="matchNumber"
+					type="number"
+					margin="normal"
+					variant="outlined"
+					value={ matchNumber }
+					onChange={ (event) => setMatchNumber(event.target.value) }
+					slotProps={{
+						htmlInput:
 							{
 								min: 0,
 								max: 999,
-								style: { MozAppearance: 'textfield', color: '#FAF9F6' }
 							}
-						}}
-						autoComplete="off"
-						style={{ width: '125px', height: '75px'}}
-						InputLabelProps={{
-							style: { color: ' #FAF9F6' }
-						}}
-					/>
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<ToggleButtonGroup
-						id='alliance-color'
-						value={ allianceColor }
-						exclusive
-						onChange={ (event, newValue) => setAllianceColor(newValue) }
-						aria-label='alliance color'
-						style={{ gap: '10px' }}
+					}}
+					autoComplete="off"
+				/>
+				<ToggleButtonGroup
+					id="alliance-color"
+					className="toggle-button-group"
+					aria-label="alliance color"
+					value={ allianceColor }
+					exclusive
+					onChange={ (event, newValue) => setAllianceColor(newValue) }
+				>
+					<ToggleButton
+						className="alliance-toggle red"
+						value={ AllianceColor.red }
+						selected={ allianceColor === 'Red' }
+						onClick={ () => setAllianceColor(AllianceColor.red) }
 					>
-						<ToggleButton 
-							value={ AllianceColor.red }
-							aria-label='red alliance'
-							selected={allianceColor === 'Red'}
-							style={{ backgroundColor: allianceColor === 'Red' ? '#ff0000' : 'transparent',
-								color: allianceColor === AllianceColor.red ? 'white' : 'orange',
-								width: '135px',
-								height: '35px',
-								borderRadius: '5px',
-								marginBottom: '10px'
-							}}
-							onClick={() => setAllianceColor(AllianceColor.red)}
-						>
-							Red Alliance
-						</ToggleButton>
-						<ToggleButton 
-							value={ AllianceColor.blue }
-							aria-label='blue alliance' 
-							selected={allianceColor === 'Blue'}
-							style={{ backgroundColor: allianceColor === 'Blue' ? '#0000ff' : 'transparent', 
-								color: allianceColor === AllianceColor.blue ? 'white' : 'orange',
-								width: '135px',
-								height: '35px',
-								borderRadius: '5px',
-								marginBottom: '15px'
-							 }}
-							onClick={() => setAllianceColor(AllianceColor.blue)}
-						>
-							Blue Alliance
-						</ToggleButton>
-					</ToggleButtonGroup>
-				</div>
-				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Auto</h1>
-				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Move</h2>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<ToggleButtonGroup
-						id='move'
-						value={ move }
-						exclusive
-						onChange={ (event, newValue) => setMove(newValue) }
-						aria-label='move'
-						style={{ gap: '10px' }}
-						defaultValue={Move.no}
+						Red Alliance
+					</ToggleButton>
+					<ToggleButton
+						className="alliance-toggle blue"
+						value={ AllianceColor.blue }
+						selected={ allianceColor === 'Blue' }
+						onClick={ () => setAllianceColor(AllianceColor.blue) }
 					>
-						<ToggleButton 
-							value={ Move.no }
-							aria-label='no move' 
-							selected={move === Move.no}
-							style={{ 
-								backgroundColor: move === Move.no ? '#fe5000' : 'transparent', 
-								color: move === Move.no ? 'white' : 'orange',
-								width: '75px',
-								height: '35px',
-								borderRadius: '5px',
-								marginBottom: '15px'
-							}}
-							onClick={() => setMove(Move.no)}
-						>
-							No
-						</ToggleButton>
-						<ToggleButton 
-							value={ Move.yes }
-							aria-label='yes move' 
-							selected={move === Move.yes}
-							style={{ 
-								backgroundColor: move === Move.yes ? '#fe5000' : 'transparent', 
-								color: move === Move.yes ? 'white' : 'orange',
-								width: '75px',
-								height: '35px',
-								borderRadius: '5px'
-							}}
-							onClick={() => setMove(Move.yes)}
-						>
-							Yes
-						</ToggleButton>
-					</ToggleButtonGroup>
-				</div>
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 4
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-					<button type="button" onClick={() => coralL4 > 0 && setCoralL4(coralL4 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL4}
-					</div>
-					<button type="button" onClick={() => setCoralL4(coralL4 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 3
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => coralL3 > 0 && setCoralL3(coralL3 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL3}
-					</div>
-					<button type="button" onClick={() => setCoralL3(coralL3 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 2
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() =>  coralL2 > 0 && setCoralL2(coralL2 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL2}
-					</div>
-					<button type="button" onClick={() => setCoralL2(coralL2 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 1
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() =>  coralL1 > 0 && setCoralL1(coralL1 - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL1}
-					</div>
-					<button type="button" onClick={() => setCoralL1(coralL1 + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Algae Rem
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() =>  algeRem > 0 && setAlgeRem(algeRem - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{algeRem}
-					</div>
-					<button type="button" onClick={() => setAlgeRem(algeRem + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Processor
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() =>  process > 0 && setProcess(process - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{process}
-					</div>
-					<button type="button" onClick={() => setProcess(process + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Net
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() =>  net > 0 && setNet(net - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{net}
-					</div>
-					<button type="button" onClick={() => setNet(net + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<h1 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Teleop</h1>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 4
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() =>  coralL4Teleop > 0 && setCoralL4Teleop(coralL4Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL4Teleop}
-					</div>
-					<button type="button" onClick={() => setCoralL4Teleop(coralL4Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 3
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => coralL3Teleop > 0 && setCoralL3Teleop(coralL3Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL3Teleop}
-					</div>
-					<button type="button" onClick={() => setCoralL3Teleop(coralL3Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 2
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => coralL2Teleop > 0 && setCoralL2Teleop(coralL2Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL2Teleop}
-					</div>
-					<button type="button" onClick={() => setCoralL2Teleop(coralL2Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Coral Level 1
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => coralL1Teleop > 0 && setCoralL1Teleop(coralL1Teleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{coralL1Teleop}
-					</div>
-					<button type="button" onClick={() => setCoralL1Teleop(coralL1Teleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Algae Rem
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => algeRemTeleop > 0 && setAlgeRemTeleop(algeRemTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{algeRemTeleop}
-					</div>
-					<button type="button" onClick={() => setAlgeRemTeleop(algeRemTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Processor
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => processTeleop > 0 && setProcessTeleop(processTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{processTeleop}
-					</div>
-					<button type="button" onClick={() => setProcessTeleop(processTeleop + 1) } style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-				<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px', fontSize: '0.8em', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto' }}>
-					Net
-				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<button type="button" onClick={() => netTeleop > 0 && setNetTeleop(netTeleop - 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>-</button>
-					<div style={{ padding: '0 5px', marginBottom: '15px', color: '#FAF9F6', textAlign: 'center', width: '85px', height: '35px', lineHeight: '35px' }}>
-        				{netTeleop}
-					</div>
-					<button type="button" onClick={() => setNetTeleop(netTeleop + 1)} style={{ color: 'white', background: '#fe5000', height: '35px', borderRadius: '5px', borderColor: 'transparent', width: '55px' }}>+</button>
-				</div>
-				
-				<h2 className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '15px' }}>Climb</h2>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-					<ToggleButtonGroup
-						id='climb'
-						value={ climb }
-						exclusive
-						onChange={ (event, newValue) => setClimb(newValue) }
-						aria-label='climb'
-						style={{ gap: '10px' }}
+						Blue Alliance
+					</ToggleButton>
+				</ToggleButtonGroup>
+				<h2 className="section-title">Auto</h2>
+				<h3 id="leave-label" className="objective-label">Leave</h3>
+				<ToggleButtonGroup
+					id="leave"
+					className="toggle-button-group"
+					aria-labelledby="leave-label"
+					value={ move }
+					defaultValue={ Move.no }
+					exclusive
+					onChange={ (event, newValue) => setMove(newValue) }
+				>
+					<ToggleButton
+						className="toggle-button"
+						value={ Move.no }
+						aria-label="no move"
+						selected={ move === Move.no }
+						onClick={ () => setMove(Move.no) }
 					>
-						<ToggleButton
-							value={ Climb.none }
-							aria-label='no climb'
-							selected={climb === Climb.none}
-							style={{ backgroundColor: climb === Climb.none ? '#fe5000' : 'transparent', color: climb === Climb.none ? 'white' : 'orange', 								
-								width: '75px',
-								height: '35px',
-								borderRadius: '5px',
-								marginBottom: '15px' }}
-							onClick={() => setClimb(Climb.none)}
-						>
-							None
-						</ToggleButton>
-						<ToggleButton
-							value={ Climb.park }
-							aria-label='park climb'
-							selected={climb === Climb.park}
-							style={{ backgroundColor: climb === Climb.park ? '#fe5000' : 'transparent', color: climb === Climb.park ? 'white' : 'orange', 								
-								width: '75px',
-								height: '35px',
-								borderRadius: '5px' }}
-							onClick={() => setClimb(Climb.park)}
-						>
-							Park
-						</ToggleButton>
-						<ToggleButton
-							value={ Climb.shallow }
-							aria-label='shallow climb'
-							selected={climb === Climb.shallow}
-							style={{ backgroundColor: climb === Climb.shallow ? '#fe5000' : 'transparent', color: climb === Climb.shallow ? 'white' : 'orange', 								
-								width: '75px',
-								height: '35px',
-								borderRadius: '5px' }}
-							onClick={() => setClimb(Climb.shallow)}
-						>
-							Shallow
-						</ToggleButton>
-						<ToggleButton
-							value={ Climb.deep }
-							aria-label='deep climb'
-							selected={climb === Climb.deep}
-							style={{ backgroundColor: climb === Climb.deep ? '#fe5000' : 'transparent', color: climb === Climb.deep ? 'white' : 'orange', 								
-								width: '75px',
-								height: '35px',
-								borderRadius: '5px' }}
-							onClick={() => setClimb(Climb.deep)}
-						>
-							Deep
-						</ToggleButton>
-					</ToggleButtonGroup>
+						No
+					</ToggleButton>
+					<ToggleButton
+						className="toggle-button"
+						value={ Move.yes }
+						aria-label="yes move"
+						selected={ move === Move.yes }
+						onClick={ () => setMove(Move.yes) }
+					>
+						Yes
+					</ToggleButton>
+				</ToggleButtonGroup>
+				<div className="counter-names">Coral Level 4</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => coralL4 > 0 && setCoralL4(coralL4 - 1) }>-</button>
+					<div className="counter-value">{ coralL4 }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL4(coralL4 + 1) }>+</button>
 				</div>
-				<div className="coral-level-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+				<div className="counter-names">Coral Level 3</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => coralL3 > 0 && setCoralL3(coralL3 - 1) }>-</button>
+					<div className="counter-value">{ coralL3 }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL3(coralL3 + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Coral Level 2</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => coralL2 > 0 && setCoralL2(coralL2 - 1) }>-</button>
+					<div className="counter-value">{ coralL2 }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL2(coralL2 + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Coral Level 1</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => coralL1 > 0 && setCoralL1(coralL1 - 1) }>-</button>
+					<div className="counter-value">{ coralL1 }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL1(coralL1 + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Algae Rem</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => algeRem > 0 && setAlgeRem(algeRem - 1) }>-</button>
+					<div className="counter-value">{ algeRem }</div>
+					<button className="counter-button" type="button" onClick={ () => setAlgeRem(algeRem + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Processor</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => process > 0 && setProcess(process - 1) }>-</button>
+					<div className="counter-value">{ process }</div>
+					<button className="counter-button" type="button" onClick={ () => setProcess(process + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Net</div>
+				<div className="counter-container">
+					<button className="counter-button" type="button" onClick={ () => net > 0 && setNet(net - 1) }>-</button>
+					<div className="counter-value">{ net }</div>
+					<button className="counter-button" type="button" onClick={ () => setNet(net + 1) }>+</button>
+				</div>
+
+				<h2 className="section-title">Teleop</h2>
+
+				<div className="counter-names">Coral Level 4</div>
+				<div className="counter-container">
 					<button
-						type='button'
-						className='back-button'
-						onClick={() => window.location.href = '/'}
-						style={{ 
-							backgroundColor: 'transparent', 
-							color: '#fe5000', 
-							fontSize: '1em', 
-							width: '75px',
-							height: '35px',
-							borderRadius: '5px',
-							border: '#fe5000 1px solid',
-							marginRight: '10px',
-							marginTop: '40px',
-							cursor: 'pointer'
-						}}
+						className="counter-button"
+						type="button"
+						onClick={ () => coralL4Teleop > 0 && setCoralL4Teleop(coralL4Teleop - 1) }
+					>-
+					</button>
+					<div className="counter-value">{ coralL4Teleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL4Teleop(coralL4Teleop + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Coral Level 3</div>
+				<div className="counter-container">
+					<button
+						className="counter-button"
+						type="button"
+						onClick={ () => coralL3Teleop > 0 && setCoralL3Teleop(coralL3Teleop - 1) }
+					>-
+					</button>
+					<div className="counter-value">{ coralL3Teleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL3Teleop(coralL3Teleop + 1) }>+</button>
+				</div>
+				<div className="counter-names">Coral Level 2</div>
+				<div className="counter-container">
+					<button
+						className="counter-button"
+						type="button"
+						onClick={ () => coralL2Teleop > 0 && setCoralL2Teleop(coralL2Teleop - 1) }
+					>-
+					</button>
+					<div className="counter-value">{ coralL2Teleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL2Teleop(coralL2Teleop + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Coral Level 1</div>
+				<div className="counter-container">
+					<button
+						className="counter-button"
+						type="button"
+						onClick={ () => coralL1Teleop > 0 && setCoralL1Teleop(coralL1Teleop - 1) }
+					>-
+					</button>
+					<div className="counter-value">{ coralL1Teleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setCoralL1Teleop(coralL1Teleop + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Algae Rem</div>
+				<div className="counter-container">
+					<button
+						type="button"
+						onClick={ () => algeRemTeleop > 0 && setAlgeRemTeleop(algeRemTeleop - 1) }
+						className="counter-button"
+					>-
+					</button>
+					<div className="counter-value">{ algeRemTeleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setAlgeRemTeleop(algeRemTeleop + 1) }>+</button>
+				</div>
+
+				<div className="counter-names">Processor</div>
+				<div className="counter-container">
+					<button
+						className="counter-button"
+						type="button"
+						onClick={ () => processTeleop > 0 && setProcessTeleop(processTeleop - 1) }
+					>-
+					</button>
+					<div className="counter-value">{ processTeleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setProcessTeleop(processTeleop + 1) }>+</button>
+
+				</div>
+				<div className="counter-names">Net</div>
+				<div className="counter-container">
+					<button
+						className="counter-button"
+						type="button"
+						onClick={ () => netTeleop > 0 && setNetTeleop(netTeleop - 1) }
+					>-
+					</button>
+					<div className="counter-value">{ netTeleop }</div>
+					<button className="counter-button" type="button" onClick={ () => setNetTeleop(netTeleop + 1) }>+</button>
+				</div>
+
+				<h3 id="climb-label" className="objective-label">Climb</h3>
+				<ToggleButtonGroup
+					id="climb"
+					className="toggle-button-group"
+					aria-labelledby="climb-label"
+					value={ climb }
+					exclusive
+					onChange={ (event, newValue) => setClimb(newValue) }
+				>
+					<ToggleButton
+						className="toggle-button"
+						value={ Climb.none }
+						selected={ climb === Climb.none }
+						onClick={ () => setClimb(Climb.none) }
+					>
+						None
+					</ToggleButton>
+					<ToggleButton
+						className="toggle-button"
+						value={ Climb.park }
+						selected={ climb === Climb.park }
+						onClick={ () => setClimb(Climb.park) }
+					>
+						Park
+					</ToggleButton>
+					<ToggleButton
+						className="toggle-button"
+						value={ Climb.shallow }
+						selected={ climb === Climb.shallow }
+						onClick={ () => setClimb(Climb.shallow) }
+					>
+						Shallow
+					</ToggleButton>
+					<ToggleButton
+						className="toggle-button"
+						value={ Climb.deep }
+						selected={ climb === Climb.deep }
+						onClick={ () => setClimb(Climb.deep) }
+					>
+						Deep
+					</ToggleButton>
+				</ToggleButtonGroup>
+				<div className="action-area">
+					<button
+						type="button"
+						className="back-button"
+						onClick={ () => window.location.href = '/' }
 					>
 						Back
 					</button>
 					<button
-						type='submit'
-						className='submit-button'
+						type="submit"
+						className="submit-button"
 						onClick={ handleSubmit }
 						disabled={ !isValid }
-						style={{ 
-							backgroundColor: isValid ? '#fe5000' : 'grey', 
-							color: 'white', 
-							fontSize: '1em', 
-							width: '75px',
-							height: '35px',
-							borderRadius: '5px',
-							border: 'none',
-							marginTop: '40px',
-							cursor: isValid ? 'pointer' : 'not-allowed'
-						}}
 					>
 						Submit
 					</button>

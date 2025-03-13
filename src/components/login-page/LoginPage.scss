@@ -1,8 +1,14 @@
+$blue: #00243e;
+$orange: #fe5000;
+$offwhite: #faf9f6;
+
 .login-page {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding-top: 24px;
+	color: $orange;
+	background-color: $blue;
 
 	.title {
 		display: flex;
@@ -31,6 +37,10 @@
 
 		#login-form-header {
 			margin-bottom: 8px;
+		}
+
+		#team-number-input, #scouter-name-input, #event-code-input, #secret-code-input {
+			color: $offwhite;
 		}
 
 		#login-submit-button {
