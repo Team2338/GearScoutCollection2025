@@ -67,7 +67,7 @@ export default function LoginPage(props: IProps) {
 					label="Team number"
 					name="teamNumber"
 					type="number"
-					margin="dense"
+					margin="normal"
 					variant="outlined"
 					value={ teamNumber }
 					onChange={ (e) => setTeamNumber(e.target.value) }
@@ -78,11 +78,7 @@ export default function LoginPage(props: IProps) {
 						htmlInput: {
 							min: 0,
 							max: 9999,
-							style: { color: ' #FAF9F6' }
 						}
-					}}
-					InputLabelProps={{
-						style: { color: ' #FAF9F6' }
 					}}
 					autoComplete="off"
 					autoFocus={ true }
@@ -92,7 +88,7 @@ export default function LoginPage(props: IProps) {
 					label="Scouter name"
 					name="scouterName"
 					type="text"
-					margin="dense"
+					margin="normal"
 					variant="outlined"
 					autoComplete="off"
 					value={ scouterName }
@@ -100,11 +96,7 @@ export default function LoginPage(props: IProps) {
 					slotProps={{
 						htmlInput: {
 							maxLength: 32,
-							style: { color: ' #FAF9F6' }
 						}
-					}}
-					InputLabelProps={{
-						style: { color: ' #FAF9F6' }
 					}}
 				/>
 				<TextField
@@ -112,7 +104,7 @@ export default function LoginPage(props: IProps) {
 					label="Event code"
 					name="eventCode"
 					type="text"
-					margin="dense"
+					margin="normal"
 					variant="outlined"
 					autoComplete="off"
 					value={ eventCode }
@@ -120,11 +112,7 @@ export default function LoginPage(props: IProps) {
 					slotProps={{
 						htmlInput: {
 							maxLength: 32,
-							style: { color: ' #FAF9F6' }
 						}
-					}}
-					InputLabelProps={{
-						style: { color: ' #FAF9F6' }
 					}}
 				/>
 				<TextField
@@ -132,7 +120,7 @@ export default function LoginPage(props: IProps) {
 					label="Secret code"
 					name="secretCode"
 					type="text"
-					margin="dense"
+					margin="normal"
 					variant="outlined"
 					autoComplete="off"
 					value={ secretCode }
@@ -140,11 +128,7 @@ export default function LoginPage(props: IProps) {
 					slotProps={{
 						htmlInput: {
 							maxLength: 32,
-							style: { color: ' #FAF9F6' }
 						}
-					}}
-					InputLabelProps={{
-						style: { color: ' #FAF9F6' }
 					}}
 				/>
 				<Button
