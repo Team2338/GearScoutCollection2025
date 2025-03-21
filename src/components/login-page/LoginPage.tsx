@@ -44,9 +44,9 @@ export default function LoginPage(props: IProps) {
 
 		props.handleLogin({
 			teamNumber: Number(teamNumber),
-			scouterName: scouterName,
-			eventCode: eventCode,
-			secretCode: secretCode
+			scouterName: scouterName.trim(),
+			eventCode: eventCode.trim(),
+			secretCode: secretCode.trim()
 		});
 	};
 
