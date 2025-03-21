@@ -1,10 +1,20 @@
 import './DataCollectionPage.scss';
-import { Button, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import {
+	Button, FormControl,
+	InputLabel, ListSubheader,
+	MenuItem,
+	Select,
+	SelectChangeEvent,
+	TextField,
+	ToggleButton,
+	ToggleButtonGroup
+} from '@mui/material';
 import { useEffect, useState } from 'react';
-import { AllianceColor, Climb, Gamemode, IMatch, IUser, Move } from '../../model/Models.ts';
+import { AllianceColor, Climb, Gamemode, IMatch, IMatchLineup, IUser, Move } from '../../model/Models.ts';
 
 interface IProps {
 	user: IUser;
+	schedule: IMatchLineup[];
 	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
@@ -63,6 +73,13 @@ export default function DataCollectionPage(props: IProps) {
 		&& climb !== Climb.unknown
 	);
 
+	const parsedMatchNumber = Number.parseInt(matchNumber);
+	const shouldShowRobotDropdown: boolean =
+		props.schedule
+		&& parsedMatchNumber // Make sure it's a real number (NaN evaluates to false)
+		&& parsedMatchNumber > 0
+		&& parsedMatchNumber <= props.schedule.length;
+
 	const handleSubmit = (event): void => {
 		event.preventDefault();
 		if (!isValid) {
@@ -94,7 +111,7 @@ export default function DataCollectionPage(props: IProps) {
 				{gamemode: Gamemode.teleop, objective: 'ALGAE_REM_2025', count: algeRemTeleop},
 				{gamemode: Gamemode.teleop, objective: 'LOW_GOAL_2025', count: processTeleop},
 				{gamemode: Gamemode.teleop, objective: 'HIGH_GOAL_2025', count: netTeleop},
-				{gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: Number(climb)},
+				{gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: climb}
 			]
 		};
 		props.submitMatchData(matchData);
@@ -142,6 +159,13 @@ export default function DataCollectionPage(props: IProps) {
 		setClimb(Climb.unknown);
 	};
 
+	useEffect(() => {
+		if (shouldShowRobotDropdown) {
+			setScoutTeamNumber('');
+			setAllianceColor(AllianceColor.unknown);
+		}
+	}, [shouldShowRobotDropdown]);
+
 	return (
 		<main className="page data-collection-page">
 			<form
@@ -157,25 +181,6 @@ export default function DataCollectionPage(props: IProps) {
 						<Button sx={{m: 0.5}} variant="contained" href="https://data.gearitforward.com/">Analytics</Button>
 					</div>
 				</div>
-				<TextField
-					id="scout-team-number"
-					label="Team Number"
-					name="scoutTeamNumber"
-					type="number"
-					margin="normal"
-					variant="outlined"
-					value={ scoutTeamNumber }
-					onChange={ (event) => setScoutTeamNumber(event.target.value) }
-					slotProps={{
-						htmlInput:
-							{
-								min: 0,
-								max: 99999,
-							}
-					}}
-					autoComplete="off"
-					autoFocus={ true }
-				/>
 				<TextField
 					id="match-number"
 					label="Match Number"
@@ -193,6 +198,18 @@ export default function DataCollectionPage(props: IProps) {
 							}
 					}}
 					autoComplete="off"
+					autoFocus={ true }
+				/>
+				<RobotSelector
+					shouldShowDropdown={ shouldShowRobotDropdown }
+					lineup={ props.schedule?.[matchNumber] }
+					value={ scoutTeamNumber }
+					onChange={ (robotNum: string, allianceColor: AllianceColor) => {
+						setScoutTeamNumber(robotNum);
+						if (allianceColor) {
+							setAllianceColor(allianceColor);
+						}
+					}}
 				/>
 				<ToggleButtonGroup
 					id="alliance-color"
@@ -205,7 +222,7 @@ export default function DataCollectionPage(props: IProps) {
 					<ToggleButton
 						className="alliance-toggle red"
 						value={ AllianceColor.red }
-						selected={ allianceColor === 'Red' }
+						selected={ allianceColor === AllianceColor.red }
 						onClick={ () => setAllianceColor(AllianceColor.red) }
 					>
 						Red Alliance
@@ -213,7 +230,7 @@ export default function DataCollectionPage(props: IProps) {
 					<ToggleButton
 						className="alliance-toggle blue"
 						value={ AllianceColor.blue }
-						selected={ allianceColor === 'Blue' }
+						selected={ allianceColor === AllianceColor.blue }
 						onClick={ () => setAllianceColor(AllianceColor.blue) }
 					>
 						Blue Alliance
@@ -444,5 +461,83 @@ export default function DataCollectionPage(props: IProps) {
 				</div>
 			</form>
 		</main>
+	);
+}
+
+interface IRobotSelectorProps {
+	shouldShowDropdown: boolean;
+	lineup: IMatchLineup;
+	value: string;
+	onChange: (robot: string, allianceColor: AllianceColor) => void;
+}
+
+function RobotSelector(props: IRobotSelectorProps) {
+	if (!props.shouldShowDropdown) {
+		return (
+			<TextField
+				id="scout-team-number"
+				label="Team Number"
+				name="scoutTeamNumber"
+				type="number"
+				margin="normal"
+				variant="outlined"
+				value={ props.value }
+				onChange={ (event) => props.onChange(event.target.value, null) }
+				slotProps={{
+					htmlInput: {
+						min: 0,
+						max: 99999
+					}
+				}}
+				autoComplete="off"
+			/>
+		);
+	}
+
+	const redRobots: string[] = [props.lineup.red1, props.lineup.red2, props.lineup.red3].map(String);
+	const blueRobots: string[] = [props.lineup.blue1, props.lineup.blue2, props.lineup.blue3].map(String);
+
+	if (props.value !== '' && !redRobots.includes(props.value) && !blueRobots.includes(props.value)) {
+		return null;
+	}
+
+	const redElements = redRobots.map((robot: string) => <MenuItem key={ robot } value={ robot }>{ robot }</MenuItem>);
+	const blueElements = blueRobots.map((robot: string) => <MenuItem key={ robot } value={ robot }>{ robot }</MenuItem>);
+
+	const handleChange = (event: SelectChangeEvent) => {
+		const value = event.target.value;
+		if (redRobots.includes(value)) {
+			props.onChange(value, AllianceColor.red);
+			return;
+		}
+
+		if (blueRobots.includes(value)) {
+			props.onChange(value, AllianceColor.blue);
+			return;
+		}
+
+		props.onChange(value, AllianceColor.unknown);
+	};
+
+	return (
+		<FormControl margin="normal">
+			<InputLabel id="robot-number-label">Team Number</InputLabel>
+			<Select
+				id="robot-number-dropdown"
+				labelId="robot-number-label"
+				label="Team Number"
+				value={ props.value }
+				variant="outlined"
+				onChange={ handleChange }
+				sx={{ width: '8em' }}
+			>
+				<MenuItem value="">None</MenuItem>
+				{ props.value }
+				<ListSubheader sx={{ color: '#aa3333', fontWeight: 600 }}>Red</ListSubheader>
+				{ redElements }
+				<ListSubheader sx={{ color: '#2255cc', fontWeight: 600 }}>Blue</ListSubheader>
+				{ blueElements }
+			</Select>
+		</FormControl>
 	);
 }

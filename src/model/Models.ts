@@ -6,38 +6,20 @@ export interface IUser {
 	secretCode: string;
 }
 
-export interface ITeam {
-	scoutTeamNumber: string;
-	matchNumber: string;
-	allianceColor: string;
-}
-
-export interface IAuto {
-	Move: string;
-	CoralL4: number;
-	CoralL3: number;
-	CoralL2: number;
-	CoralL1: number;
-	AlgeRem: number;
-	Process: number;
-	Net: number;
+export interface IMatchLineup {
+	matchNumber: number;
+	red1: number;
+	red2: number;
+	red3: number;
+	blue1: number;
+	blue2: number;
+	blue3: number;
 }
 
 export enum Move {
 	yes = 3,
 	no = 0,
 	unknown = 1
-}
-
-export interface ITeleop {
-	CoralL4Teleop: number;
-	CoralL3Teleop: number;
-	CoralL2Teleop: number;
-	CoralL1Teleop: number;
-	AlgeRemTeleop: number;
-	ProcessTeleop: number;
-	NetTeleop: number;
-	Climb: string;
 }
 
 export interface IMatch {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.scss';
-import { IUser, IMatch } from '../model/Models.ts';
+import { IUser, IMatch, IMatchLineup } from '../model/Models.ts';
+import gearScoutService from '../services/GearScout-Service.tsx';
 import DataCollectionPage from './data-collection-page/DataCollectionPage.tsx';
 import LoginPage from './login-page/LoginPage.tsx';
 import GearscoutService from '../services/GearScout-Service.tsx';
@@ -10,6 +11,7 @@ import { register } from '../ServiceWorkerRegistration.ts';
 
 export default function App() {
 	const [user, setUser] = useState<IUser>(null);
+	const [schedule, setSchedule] = useState<IMatchLineup[]>(null);
 	const [hasUpdate, setHasUpdate] = useState<boolean>(false);
 	const [serviceWorker, setServiceWorker] = useState<ServiceWorker>(null);
 
@@ -25,6 +27,17 @@ export default function App() {
 			}
 		});
 	}, []);
+
+	const handleLogin = (user: IUser): void => {
+		gearScoutService.getEventSchedule(2025, 'mndu')
+			.then((response) => {
+				const res = response.data;
+				console.log(res);
+				setSchedule(res);
+			})
+			.catch((error) => console.error('Failed to get schedule', error));
+		setUser(user);
+	};
 
 	function submitMatchData(match: IMatch): void {
 		console.log('Submitting match data', match);
@@ -43,6 +56,7 @@ export default function App() {
 				<UpdateBanner hasUpdate={ hasUpdate } serviceWorker={ serviceWorker } />
 				<DataCollectionPage
 					user={ user }
+					schedule={ schedule }
 					submitMatchData={submitMatchData}
 				/>
 			</div>
@@ -52,7 +66,7 @@ export default function App() {
 	return (
 		<div className="app">
 			<UpdateBanner hasUpdate={ hasUpdate } serviceWorker={ serviceWorker } />
-			<LoginPage handleLogin={ setUser } />
+			<LoginPage handleLogin={ handleLogin } />
 		</div>
 	);
 }
