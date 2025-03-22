@@ -22,7 +22,12 @@ class GearscoutService {
 
 	getEventSchedule = (gameYear: number, tbaCode: string): GearscoutResponse<IMatchLineup[]> => {
 		const url: string = `/v2/schedule/gameYear/${gameYear}/event/${tbaCode}`;
-		return this.service.get(url);
+		const timeout: number = 10_000;
+		const config: AxiosRequestConfig = {
+			timeout: timeout,
+			signal: AbortSignal.timeout(timeout)
+		};
+		return this.service.get(url, config);
 	};
 }
 

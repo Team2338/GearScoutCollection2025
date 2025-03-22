@@ -11,6 +11,7 @@ import { register } from '../ServiceWorkerRegistration.ts';
 
 export default function App() {
 	const [user, setUser] = useState<IUser>(null);
+	const [scheduleIsLoading, setScheduleIsLoading] = useState<boolean>(true);
 	const [schedule, setSchedule] = useState<IMatchLineup[]>(null);
 	const [hasUpdate, setHasUpdate] = useState<boolean>(false);
 	const [serviceWorker, setServiceWorker] = useState<ServiceWorker>(null);
@@ -34,8 +35,12 @@ export default function App() {
 				const res = response.data;
 				console.log(res);
 				setSchedule(res);
+				setScheduleIsLoading(false);
 			})
-			.catch((error) => console.error('Failed to get schedule', error));
+			.catch((error) => {
+				setScheduleIsLoading(false);
+				console.error('Failed to get schedule', error);
+			});
 		setUser(user);
 	};
 
@@ -57,6 +62,7 @@ export default function App() {
 				<DataCollectionPage
 					user={ user }
 					schedule={ schedule }
+					scheduleIsLoading={ scheduleIsLoading }
 					submitMatchData={submitMatchData}
 				/>
 			</div>

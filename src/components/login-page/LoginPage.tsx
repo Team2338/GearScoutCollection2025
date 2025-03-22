@@ -77,7 +77,7 @@ export default function LoginPage(props: IProps) {
 						},
 						htmlInput: {
 							min: 0,
-							max: 9999,
+							max: 99999,
 						}
 					}}
 					autoComplete="off"
