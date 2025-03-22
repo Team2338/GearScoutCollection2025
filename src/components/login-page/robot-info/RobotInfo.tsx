@@ -47,7 +47,7 @@ export default function RobotInfo(props: IProps) {
 	if (Number.isNaN(matchIndex)) {
 		return (
 			<FormControl margin="normal">
-				<InputLabel id="robot-number-label">Team Number</InputLabel>
+				<InputLabel id="robot-number-label" style={{ opacity: 0.6 }}>Team Number</InputLabel>
 				<Select
 					id="robot-number-dropdown"
 					labelId="robot-number-label"

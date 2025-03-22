@@ -29,18 +29,20 @@ export default function App() {
 		});
 	}, []);
 
-	const handleLogin = (user: IUser): void => {
-		gearScoutService.getEventSchedule(2025, 'mndu')
-			.then((response) => {
-				const res = response.data;
-				console.log(res);
-				setSchedule(res);
-				setScheduleIsLoading(false);
-			})
-			.catch((error) => {
-				setScheduleIsLoading(false);
-				console.error('Failed to get schedule', error);
-			});
+	const handleLogin = (user: IUser, tbaCode: string): void => {
+		if (tbaCode.trim().length > 0) {
+			gearScoutService.getEventSchedule(2025, tbaCode)
+				.then((response) => {
+					const res = response.data;
+					console.log(res);
+					setSchedule(res);
+					setScheduleIsLoading(false);
+				})
+				.catch((error) => {
+					setScheduleIsLoading(false);
+					console.error('Failed to get schedule', error);
+				});
+		}
 		setUser(user);
 	};
 

@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
 interface IProps {
-	handleLogin: (user: IUser) => void;
+	handleLogin: (user: IUser, tbaCode: string) => void;
 }
 
 export default function LoginPage(props: IProps) {
@@ -14,6 +14,7 @@ export default function LoginPage(props: IProps) {
 	const [scouterName, setScouterName] = useState<string>('');
 	const [eventCode, setEventCode] = useState<string>('');
 	const [secretCode, setSecretCode] = useState<string>('');
+	const [tbaCode, setTbaCode] = useState<string>('');
 
 	// Initialize inputs with last saved values
 	useEffect(() => {
@@ -21,6 +22,7 @@ export default function LoginPage(props: IProps) {
 		setScouterName(localStorage.getItem('scouterName') ?? '');
 		setEventCode(localStorage.getItem('eventCode') ?? '');
 		setSecretCode(localStorage.getItem('secretCode') ?? '');
+		setTbaCode(localStorage.getItem('tbaCode') ?? '');
 	}, []);
 
 	const isValid: boolean = Boolean(
@@ -37,17 +39,18 @@ export default function LoginPage(props: IProps) {
 		}
 
 		// Save login info for next session
-		localStorage.setItem('teamNumber', teamNumber);
-		localStorage.setItem('scouterName', scouterName);
-		localStorage.setItem('eventCode', eventCode);
-		localStorage.setItem('secretCode', secretCode);
+		localStorage.setItem('teamNumber', teamNumber.trim());
+		localStorage.setItem('scouterName', scouterName.trim());
+		localStorage.setItem('eventCode', eventCode.trim());
+		localStorage.setItem('secretCode', secretCode.trim());
+		localStorage.setItem('tbaCode', tbaCode.trim());
 
 		props.handleLogin({
 			teamNumber: Number(teamNumber),
 			scouterName: scouterName.trim(),
 			eventCode: eventCode.trim(),
 			secretCode: secretCode.trim()
-		});
+		}, tbaCode.trim());
 	};
 
 	return (
@@ -73,7 +76,7 @@ export default function LoginPage(props: IProps) {
 					onChange={ (e) => setTeamNumber(e.target.value) }
 					slotProps={{
 						input: {
-							startAdornment: <InputAdornment position="start">#</InputAdornment>
+							startAdornment: <span style={{ marginRight: '8px', color: '#faf9f6' }}>#</span>
 						},
 						htmlInput: {
 							min: 0,
@@ -128,6 +131,24 @@ export default function LoginPage(props: IProps) {
 					slotProps={{
 						htmlInput: {
 							maxLength: 32,
+						}
+					}}
+				/>
+				<TextField
+					id="tba-code-input"
+					label="TBA code (optional)"
+					helperText="The Blue Alliance event ID"
+					name="tbaCode"
+					type="text"
+					margin="normal"
+					variant="outlined"
+					autoComplete="off"
+					value={ tbaCode }
+					onChange={ (e) => setTbaCode(e.target.value) }
+					required={ false }
+					slotProps={{
+						htmlInput: {
+							maxLength: 6,
 						}
 					}}
 				/>

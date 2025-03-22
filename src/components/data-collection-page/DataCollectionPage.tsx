@@ -1,10 +1,6 @@
 import './DataCollectionPage.scss';
 import {
-	Button, FormControl,
-	InputLabel, ListSubheader,
-	MenuItem,
-	Select,
-	SelectChangeEvent,
+	Button,
 	TextField,
 	ToggleButton,
 	ToggleButtonGroup
