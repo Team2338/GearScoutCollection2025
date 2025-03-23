@@ -1,10 +1,18 @@
 import './DataCollectionPage.scss';
-import { Button, TextField, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import {
+	Button,
+	TextField,
+	ToggleButton,
+	ToggleButtonGroup
+} from '@mui/material';
 import { useEffect, useState } from 'react';
-import { AllianceColor, Climb, Gamemode, IMatch, IUser, Move } from '../../model/Models.ts';
+import { AllianceColor, Climb, Gamemode, IMatch, IMatchLineup, IUser, Move } from '../../model/Models.ts';
+import RobotInfo from '../login-page/robot-info/RobotInfo.tsx';
 
 interface IProps {
 	user: IUser;
+	schedule: IMatchLineup[];
+	scheduleIsLoading: boolean;
 	submitMatchData: (submitMatchData: IMatch) => void;
 }
 
@@ -63,6 +71,13 @@ export default function DataCollectionPage(props: IProps) {
 		&& climb !== Climb.unknown
 	);
 
+	const parsedMatchNumber = Number.parseInt(matchNumber);
+	const shouldShowRobotDropdown: boolean =
+		props.schedule
+		&& parsedMatchNumber // Make sure it's a real number (NaN evaluates to false)
+		&& parsedMatchNumber > 0
+		&& parsedMatchNumber <= props.schedule.length;
+
 	const handleSubmit = (event): void => {
 		event.preventDefault();
 		if (!isValid) {
@@ -94,7 +109,7 @@ export default function DataCollectionPage(props: IProps) {
 				{gamemode: Gamemode.teleop, objective: 'ALGAE_REM_2025', count: algeRemTeleop},
 				{gamemode: Gamemode.teleop, objective: 'LOW_GOAL_2025', count: processTeleop},
 				{gamemode: Gamemode.teleop, objective: 'HIGH_GOAL_2025', count: netTeleop},
-				{gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: Number(climb)},
+				{gamemode: Gamemode.teleop, objective: 'CLIMB_2025', count: climb}
 			]
 		};
 		props.submitMatchData(matchData);
@@ -142,6 +157,13 @@ export default function DataCollectionPage(props: IProps) {
 		setClimb(Climb.unknown);
 	};
 
+	useEffect(() => {
+		if (shouldShowRobotDropdown) {
+			setScoutTeamNumber('');
+			setAllianceColor(AllianceColor.unknown);
+		}
+	}, [shouldShowRobotDropdown]);
+
 	return (
 		<main className="page data-collection-page">
 			<form
@@ -158,25 +180,6 @@ export default function DataCollectionPage(props: IProps) {
 					</div>
 				</div>
 				<TextField
-					id="scout-team-number"
-					label="Team Number"
-					name="scoutTeamNumber"
-					type="number"
-					margin="normal"
-					variant="outlined"
-					value={ scoutTeamNumber }
-					onChange={ (event) => setScoutTeamNumber(event.target.value) }
-					slotProps={{
-						htmlInput:
-							{
-								min: 0,
-								max: 99999,
-							}
-					}}
-					autoComplete="off"
-					autoFocus={ true }
-				/>
-				<TextField
 					id="match-number"
 					label="Match Number"
 					name="matchNumber"
@@ -186,39 +189,23 @@ export default function DataCollectionPage(props: IProps) {
 					value={ matchNumber }
 					onChange={ (event) => setMatchNumber(event.target.value) }
 					slotProps={{
-						htmlInput:
-							{
-								min: 0,
-								max: 999,
-							}
+						htmlInput: {
+							min: 0,
+							max: 999,
+						}
 					}}
 					autoComplete="off"
+					autoFocus={ true }
 				/>
-				<ToggleButtonGroup
-					id="alliance-color"
-					className="toggle-button-group"
-					aria-label="alliance color"
-					value={ allianceColor }
-					exclusive
-					onChange={ (event, newValue) => setAllianceColor(newValue) }
-				>
-					<ToggleButton
-						className="alliance-toggle red"
-						value={ AllianceColor.red }
-						selected={ allianceColor === 'Red' }
-						onClick={ () => setAllianceColor(AllianceColor.red) }
-					>
-						Red Alliance
-					</ToggleButton>
-					<ToggleButton
-						className="alliance-toggle blue"
-						value={ AllianceColor.blue }
-						selected={ allianceColor === 'Blue' }
-						onClick={ () => setAllianceColor(AllianceColor.blue) }
-					>
-						Blue Alliance
-					</ToggleButton>
-				</ToggleButtonGroup>
+				<RobotInfo
+					scheduleIsLoading={ props.scheduleIsLoading }
+					schedule={ props.schedule }
+					matchNumber={ matchNumber }
+					teamNumber={ scoutTeamNumber }
+					allianceColor={ allianceColor }
+					setTeamNumber={ setScoutTeamNumber }
+					setAllianceColor={ setAllianceColor }
+				/>
 				<h2 className="section-title">Auto</h2>
 				<h3 id="leave-label" className="objective-label">Leave</h3>
 				<ToggleButtonGroup

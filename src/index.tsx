@@ -31,6 +31,10 @@ const customTheme: Theme = createTheme({
 					},
 					[`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
 						borderColor: ORANGE
+					},
+					[`&.Mui-disabled .${outlinedInputClasses.notchedOutline}`]: {
+						borderColor: OFFWHITE,
+						opacity: 0.6
 					}
 				}
 			}
@@ -39,6 +43,36 @@ const customTheme: Theme = createTheme({
 			styleOverrides: {
 				root: {
 					color: OFFWHITE
+				}
+			}
+		},
+		MuiFormHelperText: {
+			styleOverrides: {
+				root: {
+					color: OFFWHITE,
+					textAlign: 'right'
+				}
+			}
+		},
+		MuiSelect: {
+			styleOverrides: {
+				root: {
+					color: OFFWHITE,
+				},
+				icon: {
+					color: OFFWHITE,
+					'&.Mui-disabled': {
+						color: OFFWHITE
+					}
+				}
+			}
+		},
+		MuiFormLabel: {
+			styleOverrides: {
+				root: {
+					'&.Mui-focused': {
+						color: ORANGE
+					}
 				}
 			}
 		}
