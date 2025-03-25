@@ -11,7 +11,7 @@ import { register } from '../ServiceWorkerRegistration.ts';
 
 export default function App() {
 	const [user, setUser] = useState<IUser>(null);
-	const [scheduleIsLoading, setScheduleIsLoading] = useState<boolean>(true);
+	const [scheduleIsLoading, setScheduleIsLoading] = useState<boolean>(false);
 	const [schedule, setSchedule] = useState<IMatchLineup[]>(null);
 	const [hasUpdate, setHasUpdate] = useState<boolean>(false);
 	const [serviceWorker, setServiceWorker] = useState<ServiceWorker>(null);
@@ -31,6 +31,7 @@ export default function App() {
 
 	const handleLogin = (user: IUser, tbaCode: string): void => {
 		if (tbaCode.trim().length > 0) {
+			setScheduleIsLoading(true);
 			gearScoutService.getEventSchedule(2025, tbaCode)
 				.then((response) => {
 					const res = response.data;
