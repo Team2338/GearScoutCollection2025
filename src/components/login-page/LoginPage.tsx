@@ -10,6 +10,7 @@ interface IProps {
 }
 
 export default function LoginPage(props: IProps) {
+	const query = new URLSearchParams(window.location.search);
 	const [teamNumber, setTeamNumber] = useState<string>('');
 	const [scouterName, setScouterName] = useState<string>('');
 	const [eventCode, setEventCode] = useState<string>('');
@@ -18,11 +19,11 @@ export default function LoginPage(props: IProps) {
 
 	// Initialize inputs with last saved values
 	useEffect(() => {
-		setTeamNumber(localStorage.getItem('teamNumber') ?? '');
+		setTeamNumber(query.get('team') ?? localStorage.getItem('teamNumber') ?? '');
 		setScouterName(localStorage.getItem('scouterName') ?? '');
-		setEventCode(localStorage.getItem('eventCode') ?? '');
-		setSecretCode(localStorage.getItem('secretCode') ?? '');
-		setTbaCode(localStorage.getItem('tbaCode') ?? '');
+		setEventCode(query.get('event') ?? localStorage.getItem('eventCode') ?? '');
+		setSecretCode(query.get('secret') ?? localStorage.getItem('secretCode') ?? '');
+		setTbaCode(query.get('tba') ?? localStorage.getItem('tbaCode') ?? '');
 	}, []);
 
 	const isValid: boolean = Boolean(
