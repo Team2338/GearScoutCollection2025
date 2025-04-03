@@ -10,39 +10,39 @@ interface IProps {
 }
 
 export default function LoginPage(props: IProps) {
-	const query = new URLSearchParams(window.location.search);
-	const initialTeamNumber = query.get('team');
-	const initialEventCode = query.get('event');
-	const initialSecretCode = query.get('secret');
-	const initialTbaCode = query.get('tba');
-
-	if (initialTeamNumber ?? initialEventCode ?? initialSecretCode ?? initialTbaCode) {
-		// set initial values from query string and clear
-		if (initialTeamNumber) {
-			localStorage.setItem('teamNumber', initialTeamNumber);
-		}
-		if (initialEventCode) {
-			localStorage.setItem('eventCode', initialEventCode);
-		}
-		if (initialSecretCode) {
-			localStorage.setItem('secretCode', initialSecretCode);
-		}
-		if (initialTbaCode) {
-			localStorage.setItem('tbaCode', initialTbaCode);
-		}
-		const urlPieces = [location.protocol, '//', location.host, location.pathname];
-		let url = urlPieces.join('');
-		window.location.replace(url);
-	}
-
 	const [teamNumber, setTeamNumber] = useState<string>('');
 	const [scouterName, setScouterName] = useState<string>('');
 	const [eventCode, setEventCode] = useState<string>('');
 	const [secretCode, setSecretCode] = useState<string>('');
 	const [tbaCode, setTbaCode] = useState<string>('');
 
-	// Initialize inputs with last saved values
 	useEffect(() => {
+		const query = new URLSearchParams(window.location.search);
+		const initialTeamNumber = query.get('team');
+		const initialEventCode = query.get('event');
+		const initialSecretCode = query.get('secret');
+		const initialTbaCode = query.get('tba');
+
+		if (initialTeamNumber ?? initialEventCode ?? initialSecretCode ?? initialTbaCode) {
+			// set initial values from query string and clear
+			if (initialTeamNumber) {
+				localStorage.setItem('teamNumber', initialTeamNumber);
+			}
+			if (initialEventCode) {
+				localStorage.setItem('eventCode', initialEventCode);
+			}
+			if (initialSecretCode) {
+				localStorage.setItem('secretCode', initialSecretCode);
+			}
+			if (initialTbaCode) {
+				localStorage.setItem('tbaCode', initialTbaCode);
+			}
+			const urlPieces = [location.protocol, '//', location.host, location.pathname];
+			let url = urlPieces.join('');
+			window.location.replace(url);
+		}
+
+		// Initialize inputs with last saved values
 		setTeamNumber(localStorage.getItem('teamNumber') ?? '');
 		setScouterName(localStorage.getItem('scouterName') ?? '');
 		setEventCode(localStorage.getItem('eventCode') ?? '');
