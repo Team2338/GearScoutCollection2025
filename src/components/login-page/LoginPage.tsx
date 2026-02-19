@@ -2,7 +2,6 @@ import './LoginPage.scss';
 import React, { useEffect, useState } from 'react';
 import { IUser } from '../../model/Models.ts';
 import Button from '@mui/material/Button';
-import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 
 interface IProps {
@@ -38,7 +37,7 @@ export default function LoginPage(props: IProps) {
 				localStorage.setItem('tbaCode', initialTbaCode);
 			}
 			const urlPieces = [location.protocol, '//', location.host, location.pathname];
-			let url = urlPieces.join('');
+			const url = urlPieces.join('');
 			window.location.replace(url);
 		}
 
